@@ -1,47 +1,976 @@
-@String{lncs = {Lecture Notes in Computer Science}}
-@String{procecoop = {Proceedings of the European Conference on
-    Object-Oriented Programming ({ECOOP})}}
+@STRING{IEEE_J_AES        = "{IEEE} Trans. Aerosp. Electron. Syst."}
+@STRING{IEEE_J_ANE        = "{IEEE} Trans. Aerosp. Navig. Electron."}
+@STRING{IEEE_J_ANNE       = "{IEEE} Trans. Aeronaut. Navig. Electron."}
+@STRING{IEEE_J_AS         = "{IEEE} Trans. Aerosp."}
+@STRING{IEEE_J_AIRE       = "{IEEE} Trans. Airborne Electron."}
+@STRING{IEEE_J_MIL        = "{IEEE} Trans. Mil. Electron."}
+autos, transportation and vehicles (non-aerospace)
+@STRING{IEEE_J_ITS        = "{IEEE} Trans. Intell. Transp. Syst."}
+@STRING{IEEE_J_VT         = "{IEEE} Trans. Veh. Technol."}
+@STRING{IEEE_J_VC         = "{IEEE} Trans. Veh. Commun."}
+circuits, signals, systems, audio and controls
+@STRING{IEEE_J_SPL        = "{IEEE} Signal Process. Lett."}
+@STRING{IEEE_J_ASSP       = "{IEEE} Trans. Acoust., Speech, Signal Process."}
+@STRING{IEEE_J_AU         = "{IEEE} Trans. Audio"}
+@STRING{IEEE_J_AUEA       = "{IEEE} Trans. Audio Electroacoust."}
+@STRING{IEEE_J_AC         = "{IEEE} Trans. Autom. Control"}
+@STRING{IEEE_J_CAS        = "{IEEE} Trans. Circuits Syst."}
+@STRING{IEEE_J_CASVT      = "{IEEE} Trans. Circuits Syst. Video Technol."}
+@STRING{IEEE_J_CASI       = "{IEEE} Trans. Circuits Syst. {I}"}
+@STRING{IEEE_J_CASII      = "{IEEE} Trans. Circuits Syst. {II}"}
+in 2004 CASI and CASII renamed part title to CASI_RP and CASII_EB, respectively.
+@STRING{IEEE_J_CASI_RP    = "{IEEE} Trans. Circuits Syst. {I}"}
+@STRING{IEEE_J_CASII_EB   = "{IEEE} Trans. Circuits Syst. {II}"}
+@STRING{IEEE_J_CT         = "{IEEE} Trans. Circuit Theory"}
+@STRING{IEEE_J_CST        = "{IEEE} Trans. Control Syst. Technol."}
+@STRING{IEEE_J_SP         = "{IEEE} Trans. Signal Process."}
+@STRING{IEEE_J_SU         = "{IEEE} Trans. Sonics Ultrason."}
+@STRING{IEEE_J_SAP        = "{IEEE} Trans. Speech Audio Process."}
+@STRING{IEEE_J_UE         = "{IEEE} Trans. Ultrason. Eng."}
+@STRING{IEEE_J_UFFC       = "{IEEE} Trans. Ultrason., Ferroelectr., Freq. Control"}
+communications
+@STRING{IEEE_J_COML       = "{IEEE} Commun. Lett."}
+@STRING{IEEE_J_JSAC       = "{IEEE} J. Sel. Areas Commun."}
+@STRING{IEEE_J_COM        = "{IEEE} Trans. Commun."}
+@STRING{IEEE_J_COMT       = "{IEEE} Trans. Commun. Technol."}
+@STRING{IEEE_J_WCOM       = "{IEEE} Trans. Wireless Commun."}
+components, packaging and manufacturing
+@STRING{IEEE_J_ADVP       = "{IEEE} Trans. Adv. Packag."}
+@STRING{IEEE_J_CHMT       = "{IEEE} Trans. Compon., Hybrids, Manuf. Technol."}
+@STRING{IEEE_J_CPMTA      = "{IEEE} Trans. Compon., Packag., Manuf. Technol. {A}"}
+@STRING{IEEE_J_CPMTB      = "{IEEE} Trans. Compon., Packag., Manuf. Technol. {B}"}
+@STRING{IEEE_J_CPMTC      = "{IEEE} Trans. Compon., Packag., Manuf. Technol. {C}"}
+@STRING{IEEE_J_CAPT       = "{IEEE} Trans. Compon. Packag. Technol."}
+@STRING{IEEE_J_CAPTS      = "{IEEE} Trans. Compon. Packag. Technol."}
+@STRING{IEEE_J_CPART      = "{IEEE} Trans. Compon. Parts"}
+@STRING{IEEE_J_EPM        = "{IEEE} Trans. Electron. Packag. Manuf."}
+@STRING{IEEE_J_MFT        = "{IEEE} Trans. Manuf. Technol."}
+@STRING{IEEE_J_PHP        = "{IEEE} Trans. Parts, Hybrids, Packag."}
+@STRING{IEEE_J_PMP        = "{IEEE} Trans. Parts, Mater., Packag."}
+CAD
+@STRING{IEEE_J_TCAD       = "{IEEE} J. Technol. Comput. Aided Design"}
+@STRING{IEEE_J_CAD        = "{IEEE} Trans. Comput.-Aided Design Integr. Circuits Syst."}
+coding, data, information, knowledge
+@STRING{IEEE_J_IT         = "{IEEE} Trans. Inf. Theory"}
+@STRING{IEEE_J_KDE        = "{IEEE} Trans. Knowl. Data Eng."}
+computers, computation, networking and software
+@STRING{IEEE_J_C          = "{IEEE} Trans. Comput."}
+@STRING{IEEE_J_CAL        = "{IEEE} Comput. Archit. Lett."}
+disabled till definition is verified
+STRING{IEEE_J_DSC         = "{IEEE} Trans. Dependable Secure Comput."}
+@STRING{IEEE_J_ECOMP      = "{IEEE} Trans. Electron. Comput."}
+@STRING{IEEE_J_EVC        = "{IEEE} Trans. Evol. Comput."}
+@STRING{IEEE_J_FUZZ       = "{IEEE} Trans. Fuzzy Syst."}
+@STRING{IEEE_J_IFS        = "{IEEE} Trans. Inf. Forensics Security"}
+@STRING{IEEE_J_MC         = "{IEEE} Trans. Mobile Comput."}
+@STRING{IEEE_J_NET        = "{IEEE/ACM} Trans. Netw."}
+@STRING{IEEE_J_NN         = "{IEEE} Trans. Neural Netw."}
+@STRING{IEEE_J_PDS        = "{IEEE} Trans. Parallel Distrib. Syst."}
+@STRING{IEEE_J_SE         = "{IEEE} Trans. Softw. Eng."}
+computer graphics, imaging, and multimedia
+@STRING{IEEE_J_JDT        = "{IEEE/OSA} J. Display Technol."}
+@STRING{IEEE_J_IP         = "{IEEE} Trans. Image Process."}
+@STRING{IEEE_J_MM         = "{IEEE} Trans. Multimedia"}
+@STRING{IEEE_J_VCG        = "{IEEE} Trans. Vis. Comput. Graphics"}
+cybernetics, ergonomics, robots, man-machine, and automation
+@STRING{IEEE_J_ASE        = "{IEEE} Trans. Autom. Sci. Eng."}
+@STRING{IEEE_J_JRA        = "{IEEE} J. Robot. Autom."}
+@STRING{IEEE_J_HFE        = "{IEEE} Trans. Hum. Factors Electron."}
+@STRING{IEEE_J_MMS        = "{IEEE} Trans. Man-Mach. Syst."}
+@STRING{IEEE_J_PAMI       = "{IEEE} Trans. Pattern Anal. Mach. Intell."}
+in 1989 JRA became RA
+in August 2004, RA split into ASE and RO
+@STRING{IEEE_J_RA         = "{IEEE} Trans. Robot. Autom."}
+@STRING{IEEE_J_RO         = "{IEEE} Trans. Robot."}
+@STRING{IEEE_J_SMC        = "{IEEE} Trans. Syst., Man, Cybern."}
+@STRING{IEEE_J_SMCA       = "{IEEE} Trans. Syst., Man, Cybern. {A}"}
+@STRING{IEEE_J_SMCB       = "{IEEE} Trans. Syst., Man, Cybern. {B}"}
+@STRING{IEEE_J_SMCC       = "{IEEE} Trans. Syst., Man, Cybern. {C}"}
+@STRING{IEEE_J_SSC        = "{IEEE} Trans. Syst. Sci. Cybern."}
+earth, wind, fire and water
+@STRING{IEEE_J_GE         = "{IEEE} Trans. Geosci. Electron."}
+@STRING{IEEE_J_GRS        = "{IEEE} Trans. Geosci. Remote Sens."}
+@STRING{IEEE_J_GRSL       = "{IEEE} Geosci. Remote Sens. Lett."}
+@STRING{IEEE_J_OE         = "{IEEE} J. Ocean. Eng."}
+education, engineering, history, IEEE, professional
+disabled till definition is verified
+STRING{IEEE_J_CJECE       = "Canadian J. Elect. Comput. Eng."}
+@STRING{IEEE_J_PROC       = "Proc. {IEEE}"}
+@STRING{IEEE_J_EDU        = "{IEEE} Trans. Educ."}
+@STRING{IEEE_J_EM         = "{IEEE} Trans. Eng. Manag."}
+disabled till definition is verified
+STRING{IEEE_J_EWS         = "{IEEE} Trans. Eng. Writing Speech"}
+@STRING{IEEE_J_PC         = "{IEEE} Trans. Prof. Commun."}
+electromagnetics, antennas, EMI, magnetics and microwave
+@STRING{IEEE_J_AWPL       = "{IEEE} Antennas Wireless Propag. Lett."}
+@STRING{IEEE_J_MGWL       = "{IEEE} Microw. Guided Wave Lett."}
+IEEE seems to want "Compon." here, not "Comp."
+@STRING{IEEE_J_MWCL       = "{IEEE} Microw. Wireless Compon. Lett."}
+@STRING{IEEE_J_AP         = "{IEEE} Trans. Antennas Propag."}
+@STRING{IEEE_J_EMC        = "{IEEE} Trans. Electromagn. Compat."}
+@STRING{IEEE_J_MAG        = "{IEEE} Trans. Magn."}
+@STRING{IEEE_J_MTT        = "{IEEE} Trans. Microw. Theory Tech."}
+@STRING{IEEE_J_RFI        = "{IEEE} Trans. Radio Freq. Interference"}
+@STRING{IEEE_J_TJMJ       = "{IEEE} Transl. J. Magn. Jpn."}
+energy and power
+@STRING{IEEE_J_EC         = "{IEEE} Trans. Energy Convers."}
+@STRING{IEEE_J_PEL        = "{IEEE} Power Electron. Lett."}
+@STRING{IEEE_J_PWRAS      = "{IEEE} Trans. Power App. Syst."}
+@STRING{IEEE_J_PWRD       = "{IEEE} Trans. Power Del."}
+@STRING{IEEE_J_PWRE       = "{IEEE} Trans. Power Electron."}
+@STRING{IEEE_J_PWRS       = "{IEEE} Trans. Power Syst."}
+industrial, commercial and consumer
+@STRING{IEEE_J_APPIND     = "{IEEE} Trans. Appl. Ind."}
+@STRING{IEEE_J_BC         = "{IEEE} Trans. Broadcast."}
+disabled till definition is verified
+STRING{IEEE_J_BCTV        = "{IEEE} Trans. Broadcast Television Receivers"}
+@STRING{IEEE_J_CE         = "{IEEE} Trans. Consum. Electron."}
+@STRING{IEEE_J_IE         = "{IEEE} Trans. Ind. Electron."}
+@STRING{IEEE_J_IECI       = "{IEEE} Trans. Ind. Electron. Contr. Instrum."}
+@STRING{IEEE_J_IA         = "{IEEE} Trans. Ind. Appl."}
+@STRING{IEEE_J_IGA        = "{IEEE} Trans. Ind. Gen. Appl."}
+@STRING{IEEE_J_IINF       = "{IEEE} Trans. Ind. Informat."}
+@STRING{IEEE_J_PSE        = "{IEEE} J. Product Safety Eng."}
+instrumentation and measurement
+@STRING{IEEE_J_IM         = "{IEEE} Trans. Instrum. Meas."}
+insulation and materials
+@STRING{IEEE_J_JEM        = "{IEEE/TMS} J. Electron. Mater."}
+@STRING{IEEE_J_DEI        = "{IEEE} Trans. Dielectr. Electr. Insul."}
+@STRING{IEEE_J_EI         = "{IEEE} Trans. Electr. Insul."}
+mechanical
+@STRING{IEEE_J_MECH       = "{IEEE/ASME} Trans. Mechatronics"}
+@STRING{IEEE_J_MEMS       = "J. Microelectromech. Syst."}
 
-@Book{lamport-1994-ladps,
-    author =	{Lamport, Leslie},
-    title =	{\LaTeX: A Document Preparation System},
-    booktitle =	{\LaTeX: A Document Preparation System},
-    year =	1994,
-    edition =	2,
-    publisher =	{Addison-Wesley},
-    isbn =	0201529831,
+
+
+medical and biological
+@STRING{IEEE_J_BME        = "{IEEE} Trans. Biomed. Eng."}
+Note: The B-ME journal later dropped the hyphen and became the BME.
+@STRING{IEEE_J_B-ME       = "{IEEE} Trans. Bio-Med. Eng."}
+@STRING{IEEE_J_BMELC      = "{IEEE} Trans. Bio-Med. Electron."}
+disabled till definition is verified
+STRING{IEEE_J_CBB         = "{IEEE/ACM} Trans. Comput. Biology Bioinformatics"}
+@STRING{IEEE_J_ITBM       = "{IEEE} Trans. Inf. Technol. Biomed."}
+@STRING{IEEE_J_ME         = "{IEEE} Trans. Med. Electron."}
+@STRING{IEEE_J_MI         = "{IEEE} Trans. Med. Imag."}
+@STRING{IEEE_J_NB         = "{IEEE} Trans. Nanobiosci."}
+@STRING{IEEE_J_NSRE       = "{IEEE} Trans. Neural Syst. Rehabil. Eng."}
+@STRING{IEEE_J_RE         = "{IEEE} Trans. Rehabil. Eng."}
+ optics, lightwave and photonics
+@STRING{IEEE_J_PTL        = "{IEEE} Photon. Technol. Lett."}
+@STRING{IEEE_J_JLT        = "J. Lightw. Technol."}
+
+
+
+physics, electrons, nanotechnology, nuclear and quantum electronics
+@STRING{IEEE_J_EDL        = "{IEEE} Electron Device Lett."}
+@STRING{IEEE_J_JQE        = "{IEEE} J. Quantum Electron."}
+@STRING{IEEE_J_JSTQE      = "{IEEE} J. Sel. Topics Quantum Electron."}
+@STRING{IEEE_J_ED         = "{IEEE} Trans. Electron Devices"}
+@STRING{IEEE_J_NANO       = "{IEEE} Trans. Nanotechnol."}
+@STRING{IEEE_J_NS         = "{IEEE} Trans. Nucl. Sci."}
+@STRING{IEEE_J_PS         = "{IEEE} Trans. Plasma Sci."}
+reliability
+IEEE seems to want "Mat." here, not "Mater."
+@STRING{IEEE_J_DMR        = "{IEEE} Trans. Device Mater. Rel."}
+@STRING{IEEE_J_R          = "{IEEE} Trans. Rel."}
+semiconductors, superconductors, electrochemical and solid state
+@STRING{IEEE_J_ESSL       = "{IEEE/ECS} Electrochem. Solid-State Lett."}
+@STRING{IEEE_J_JSSC       = "{IEEE} J. Solid-State Circuits"}
+@STRING{IEEE_J_ASC        = "{IEEE} Trans. Appl. Supercond."}
+@STRING{IEEE_J_SM         = "{IEEE} Trans. Semicond. Manuf."}
+sensors
+@STRING{IEEE_J_SENSOR     = "{IEEE} Sensors J."}
+VLSI
+@STRING{IEEE_J_VLSI       = "{IEEE} Trans. {VLSI} Syst."}
+IEEE Magazines 
+@STRING{IEEE_M_AES        = "{IEEE} Aerosp. Electron. Syst. Mag."}
+@STRING{IEEE_M_HIST       = "{IEEE} Ann. Hist. Comput."}
+@STRING{IEEE_M_AP         = "{IEEE} Antennas Propag. Mag."}
+@STRING{IEEE_M_ASSP       = "{IEEE} {ASSP} Mag."}
+@STRING{IEEE_M_CD         = "{IEEE} Circuits Devices Mag."}
+@STRING{IEEE_M_CAS        = "{IEEE} Circuits Syst. Mag."}
+@STRING{IEEE_M_COM        = "{IEEE} Commun. Mag."}
+@STRING{IEEE_M_COMSOC     = "{IEEE} Commun. Soc. Mag."}
+@STRING{IEEE_M_CIM        = "{IEEE} Comput. Intell. Mag."}
+CSEM changed to CSE in 1999
+@STRING{IEEE_M_CSE        = "{IEEE} Comput. Sci. Eng."}
+@STRING{IEEE_M_CSEM       = "{IEEE} Comput. Sci. Eng. Mag."}
+@STRING{IEEE_M_C          = "{IEEE} Computer"}
+@STRING{IEEE_M_CAP        = "{IEEE} Comput. Appl. Power"}
+@STRING{IEEE_M_CGA        = "{IEEE} Comput. Graph. Appl."}
+@STRING{IEEE_M_CONC       = "{IEEE} Concurrency"}
+@STRING{IEEE_M_CS         = "{IEEE} Control Syst. Mag."}
+@STRING{IEEE_M_DTC        = "{IEEE} Des. Test. Comput."}
+@STRING{IEEE_M_EI         = "{IEEE} Electr. Insul. Mag."}
+@STRING{IEEE_M_ETR        = "{IEEE} ElectroTechnol. Rev."}
+@STRING{IEEE_M_EMB        = "{IEEE} Eng. Med. Biol. Mag."}
+@STRING{IEEE_M_EMR        = "{IEEE} Eng. Manag. Rev."}
+@STRING{IEEE_M_EXP        = "{IEEE} Expert"}
+@STRING{IEEE_M_IA         = "{IEEE} Ind. Appl. Mag."}
+@STRING{IEEE_M_IM         = "{IEEE} Instrum. Meas. Mag."}
+@STRING{IEEE_M_IS         = "{IEEE} Intell. Syst."}
+@STRING{IEEE_M_IC         = "{IEEE} Internet Comput."}
+@STRING{IEEE_M_ITP        = "{IEEE} {IT} Prof."}
+@STRING{IEEE_M_MICRO      = "{IEEE} Micro"}
+@STRING{IEEE_M_MW         = "{IEEE} Microw. Mag."}
+@STRING{IEEE_M_MM         = "{IEEE} Multimedia"}
+@STRING{IEEE_M_NET        = "{IEEE} Netw."}
+IEEE's editorial manual lists "Pers. Commun.", 
+but "Personal Commun. Mag." seems to be what is used in the journals
+@STRING{IEEE_M_PCOM       = "{IEEE} Personal Commun. Mag."}
+@STRING{IEEE_M_POT        = "{IEEE} Potentials"}
+CAP and PER merged to form PE in 2003
+@STRING{IEEE_M_PE         = "{IEEE} Power Energy Mag."}
+@STRING{IEEE_M_PER        = "{IEEE} Power Eng. Rev."}
+@STRING{IEEE_M_PVC        = "{IEEE} Pervasive Comput."}
+@STRING{IEEE_M_RA         = "{IEEE} Robot. Autom. Mag."}
+@STRING{IEEE_M_SAP        = "{IEEE} Security Privacy"}
+@STRING{IEEE_M_SP         = "{IEEE} Signal Process. Mag."}
+@STRING{IEEE_M_S          = "{IEEE} Softw."}
+@STRING{IEEE_M_SPECT      = "{IEEE} Spectr."}
+@STRING{IEEE_M_TS         = "{IEEE} Technol. Soc. Mag."}
+@STRING{IEEE_M_VT         = "{IEEE} Veh. Technol. Mag."}
+@STRING{IEEE_M_WC         = "{IEEE} Wireless Commun. Mag."}
+@STRING{IEEE_M_TODAY      = "Today's Engineer"}
+
+
+
+
+
+
+IEEE Online Publications 
+@STRING{IEEE_O_CSTO        = "{IEEE} Commun. Surveys Tuts."}
+disabled till definition is verified
+STRING{IEEE_O_DSO          = "{IEEE} Distrib. Syst. Online"}
+@Manual{gitTopic,
+  title =        {Classifying your repository with topics},
+  note =         {\url{https://help.github.com/en/github/administering-a-repository/classifying-your-repository-with-topics}}
+}
+@article{borges2018s,
+  title={What’s in a GitHub star? understanding repository starring practices in a social coding platform},
+  author={Borges, Hudson and Valente, Marco Tulio},
+  journal={Journal of Systems and Software},
+  volume={146},
+  pages={112--129},
+  year={2018},
+  publisher={Elsevier}
+}
+@incollection{serrat2017five,
+  title={The five whys technique},
+  author={Serrat, Olivier},
+  booktitle={Knowledge solutions},
+  pages={307--310},
+  year={2017},
+  publisher={Springer}
+}
+@article{towardsIoTDefinition,
+  title={Towards a definition of the Internet of Things ({IoT})},
+  author={Minerva, Roberto and Biru, Abyi and Rotondi, Domenico},
+  journal={IEEE Internet Initiative},
+  volume={1},
+  number={1},
+  pages={1--86},
+  year={2015}
+}
+@incollection{fiveWhys,
+  title={The five whys technique},
+  author={Serrat, Olivier},
+  booktitle={Knowledge solutions},
+  pages={307--310},
+  year={2017},
+  publisher={Springer}
+}
+@Manual{repPack,
+  author={A. Makhshari and A. Mesbah },
+  title =        {{IoT} Bugs and Development Challenges Artifact Package},
+  month =        {August},
+  year =         2020,
+  note =         {\url{https://github.com/IoTSEstudy/IoTbugschallenges}}
+}
+@article{qualitativeStudySE,
+  title={Qualitative methods in empirical studies of software engineering},
+  author={Seaman, Carolyn B.},
+  journal={IEEE Transactions on software engineering},
+  volume={25},
+  number={4},
+  pages={557--572},
+  year={1999},
+  publisher={IEEE}
+}
+@article{bugCharOpenSoftware,
+  title={Bug characteristics in open source software},
+  author={Tan, Lin and Liu, Chen and Li, Zhenmin and Wang, Xuanhui and Zhou, Yuanyuan and Zhai, Chengxiang},
+  journal={Empirical software engineering},
+  volume={19},
+  number={6},
+  pages={1665--1705},
+  year={2014},
+  publisher={Springer}
+}
+@article{failureDefinition,
+  title={Basic concepts and taxonomy of dependable and secure computing},
+  author={Avizienis, Algirdas and Laprie, J-C and Randell, Brian and Landwehr, Carl},
+  journal={IEEE transactions on dependable and secure computing},
+  volume={1},
+  number={1},
+  pages={11--33},
+  year={2004},
+  publisher={IEEE}
+}
+@article{sampling2007,
+  title={Purposive sampling as a tool for informant selection},
+  author={Tongco, Ma Dolores C},
+  journal={Ethnobotany Research and applications},
+  volume={5},
+  pages={147--158},
+  year={2007}
+}
+@inproceedings{aniche2018modern,
+  title={How modern news aggregators help development communities shape and share knowledge},
+  author={Aniche, Maur{\'\i}cio and Treude, Christoph and Steinmacher, Igor and Wiese, Igor and Pinto, Gustavo and Storey, Margaret-Anne and Gerosa, Marco Aur{\'e}lio},
+  booktitle={2018 IEEE/ACM 40th International Conference on Software Engineering (ICSE)},
+  pages={499--510},
+  year={2018},
+  organization={IEEE}
+}
+@article{tschofenig2014architectural,
+  title={Architectural considerations in smart object networking, Internet Engineering Task Force, RFC-7452},
+  author={Tschofenig, H and Arkko, J and McPherson, D},
+  journal={Internet Engineering Task Force, Fremont, CA, USA},
+  year={2014}
+}
+@article{kwasnik1999role,
+  title={The role of classification in knowledge representation and discovery},
+  author={Kwasnik, Barbara H},
+  year={1999},
+  journal={Graduate School of Library and Information Science. University of Illinois~…}
 }
 
-@Book{bringhurst-2002-teots,
-    author =	{Bringhurst, Robert},
-    title =	{The Elements of Typographic Style},
-    booktitle =	{The Elements of Typographic Style},
-    year =	2002,
-    edition =	{2.5},
-    publisher =	{Hartley \& Marks},
-    isbn =	0881791326,
+@article{dataSaturationFusch,
+  title={Are we there yet? Data saturation in qualitative research},
+  author={Fusch, Patricia I and Ness, Lawrence R},
+  journal={The qualitative report},
+  volume={20},
+  number={9},
+  pages={1408},
+  year={2015},
+  publisher={The Qualitative Report}
+}
+@misc{saturationMorse,
+  title={Data were saturated...},
+  author={Morse, Janice M},
+  year={2015},
+  publisher={Sage Publications Sage CA: Los Angeles, CA}
+}
+@article{saturationGuest,
+  title={How many interviews are enough? An experiment with data saturation and variability},
+  author={Guest, Greg and Bunce, Arwen and Johnson, Laura},
+  journal={Field methods},
+  volume={18},
+  number={1},
+  pages={59--82},
+  year={2006},
+  publisher={Sage Publications Sage CA: Thousand Oaks, CA}
+}
+@article{henrich2010weirdest,
+  title={The weirdest people in the world?},
+  author={Henrich, Joseph and Heine, Steven J and Norenzayan, Ara},
+  journal={Behavioral and brain sciences},
+  volume={33},
+  number={2-3},
+  pages={61--83},
+  year={2010},
+  publisher={Cambridge University Press}
+}
+@inproceedings{tweeter2014,
+  title={Software engineering at the speed of light: how developers stay current using twitter},
+  author={Singer, Leif and Figueira Filho, Fernando and Storey, Margaret-Anne},
+  booktitle={Proceedings of the 36th International Conference on Software Engineering},
+  pages={211--221},
+  year={2014}
+}
+@article{grounded2007,
+  title={Using grounded theory to understand software process improvement: A study of Irish software product companies},
+  author={Coleman, Gerry and O’Connor, Rory},
+  journal={Information and Software Technology},
+  volume={49},
+  number={6},
+  pages={654--667},
+  year={2007},
+  publisher={Elsevier}
+}
+%% _______________________________  IoT Studies in literature
+@inproceedings{IoTOSBugs,
+  title={Understanding and detecting performance and security bugs in {IoT} OSes},
+  author={Liang, Hongliang and Zhao, Qian and Wang, Yuying and Liu, Haifeng},
+  booktitle={2016 17th IEEE/ACIS International Conference on Software Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD)},
+  pages={413--418},
+  year={2016},
+  organization={IEEE}
+}
+@article{stojkoska2017review,
+  title={A review of Internet of Things for smart home: Challenges and solutions},
+  author={Stojkoska, Biljana L Risteska and Trivodaliev, Kire V},
+  journal={Journal of Cleaner Production},
+  volume={140},
+  pages={1454--1464},
+  year={2017},
+  publisher={Elsevier}
+}
+@article{vcolakovic2018IoT,
+  title={Internet of Things ({IoT}): A review of enabling technologies, challenges, and open research issues},
+  author={{\v{C}}olakovi{\'c}, Alem and Had{\v{z}}iali{\'c}, Mesud},
+  journal={Computer Networks},
+  volume={144},
+  pages={17--39},
+  year={2018},
+  publisher={Elsevier}
+}
+@misc{eclipse2016three,
+  title={The three software stacks required for {IoT} architectures},
+  author={Eclipse {IoT} Working Group and others},
+  year={2016},
+  publisher={Technical report, Eclipse Foundation}
 }
 
-@InProceedings{kiczales-1997-aop,
-    author =    {Kiczales, Gregor and Lamping, John and
-		    Mendhekar, Anurag and Maeda, Chris and
-		    Lopes, Cristina and Loingtier, Jean-Marc
-		    and Irwin, John},
-    title =     {Aspect-Oriented Programming},
-    booktitle = procecoop,
-    year =	1997,
-    series =    lncs,
-    volume =    2591,
-    pages =     {220--242},
-    keywords =  {aop, aspect-oriented programming},
-    online =	{http://www.parc.xerox.com/csl/groups/sda/pubs/papers/Kiczal
-es-ECOOP97/for-web.pdf},
+
+%% _______________________________  BUG MINING 
+@article{DlTaxFaults,
+  title={Taxonomy of Real Faults in Deep Learning Systems},
+  author={Jahangirova, Gunel and Humbatova, Nargiz and Bavota, Gabriele and Riccio, Vincenzo and Stocco, Andrea and Tonella, Paolo},
+  journal={arXiv preprint arXiv:1910.11015},
+  year={2019}
 }
 
-@Book{rowling-1997-hpps,
-    author =	{Rowling, Joanna K.},
-    title =	{Harry Potter and the Philospher's Stone},
-    year =	1997,
-    publisher =	{Bloomsbury},
-    isbn =	0747532699,
+@inproceedings{zhangempiricalDL2020ICSE,
+  title={An empirical study on program failures of deep learning jobs},
+  author={Zhang, Ru and Xiao, Wencong and Zhang, Hongyu and Liu, Yu and Lin, Haoxiang and Yang, Mao},
+  booktitle={2020 IEEE/ACM 42nd International Conference on Software Engineering (ICSE)},
+  pages={1159--1170},
+  year={2020},
+  organization={IEEE}
 }
+
+
+@inproceedings{TensorFBugsISSTA,
+  title={An empirical study on TensorFlow program bugs},
+  author={Zhang, Yuhao and Chen, Yifan and Cheung, Shing-Chi and Xiong, Yingfei and Zhang, Lu},
+  booktitle={Proceedings of the 27th ACM SIGSOFT International Symposium on Software Testing and Analysis},
+  pages={129--140},
+  year={2018}
+}
+@inproceedings{islam2019comprehensive,
+  title={A comprehensive study on deep learning bug characteristics},
+  author={Islam, Md Johirul and Nguyen, Giang and Pan, Rangeet and Rajan, Hridesh},
+  booktitle={Proceedings of the 2019 27th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+  pages={510--520},
+  year={2019}
+}
+
+@inproceedings{MLrealBugs,
+  title={An empirical study on real bugs for machine learning programs},
+  author={Sun, Xiaobing and Zhou, Tianchi and Li, Gengjie and Hu, Jiajun and Yang, Hui and Li, Bin},
+  booktitle={2017 24th Asia-Pacific Software Engineering Conference (APSEC)},
+  pages={348--357},
+  year={2017},
+  organization={IEEE}
+}
+@inproceedings{FerdianMLBugs,
+  title={An empirical study of bugs in machine learning systems},
+  author={Thung, Ferdian and Wang, Shaowei and Lo, David and Jiang, Lingxiao},
+  booktitle={2012 IEEE 23rd International Symposium on Software Reliability Engineering},
+  pages={271--280},
+  year={2012},
+  organization={IEEE}
+}
+@inproceedings{blockChainBugs,
+  title={Bug characteristics in blockchain systems: a large-scale empirical study},
+  author={Wan, Zhiyuan and Lo, David and Xia, Xin and Cai, Liang},
+  booktitle={2017 IEEE/ACM 14th International Conference on Mining Software Repositories (MSR)},
+  pages={413--424},
+  year={2017},
+  organization={IEEE}
+}
+@inproceedings{bigDataIssues,
+  title={An empirical study on quality issues of production big data platform},
+  author={Zhou, Hucheng and Lou, Jian-Guang and Zhang, Hongyu and Lin, Haibo and Lin, Haoxiang and Qin, Tingting},
+  booktitle={2015 IEEE/ACM 37th IEEE International Conference on Software Engineering},
+  volume={2},
+  pages={17--26},
+  year={2015},
+  organization={IEEE}
+}
+@article{jsBugsOcariza,
+  title={A study of causes and consequences of client-side JavaScript bugs},
+  author={Ocariza, Frolin S and Bajaj, Kartik and Pattabiraman, Karthik and Mesbah, Ali},
+  journal={IEEE Transactions on Software Engineering},
+  volume={43},
+  number={2},
+  pages={128--144},
+  year={2016},
+  publisher={IEEE}
+}
+@inproceedings{memBugs,
+  title={Identifying the root causes of memory bugs using corrupted memory location suppression},
+  author={Jeffrey, Dennis and Gupta, Neelam and Gupta, Rajiv},
+  booktitle={2008 IEEE International Conference on Software Maintenance},
+  pages={356--365},
+  year={2008},
+  organization={IEEE}
+}
+@article{openSourceBugs,
+  title={Bug characteristics in open source software},
+  author={Tan, Lin and Liu, Chen and Li, Zhenmin and Wang, Xuanhui and Zhou, Yuanyuan and Zhai, Chengxiang},
+  journal={Empirical software engineering},
+  volume={19},
+  number={6},
+  pages={1665--1705},
+  year={2014},
+  publisher={Springer}
+}
+@inproceedings{bugBench,
+  title={Bugbench: Benchmarks for evaluating bug detection tools},
+  author={Lu, Shan and Li, Zhenmin and Qin, Feng and Tan, Lin and Zhou, Pin and Zhou, Yuanyuan},
+  booktitle={Workshop on the evaluation of software defect detection tools},
+  volume={5},
+  year={2005}
+}
+@article{IoTOSS2020,
+  title={How is Open Source Software Development Different in Popular {IoT} Projects?},
+  author={Corno, Fulvio and De Russis, Luigi and S{\'a}enz, Juan Pablo},
+  journal={IEEE Access},
+  volume={8},
+  pages={28337--28348},
+  year={2020},
+  publisher={IEEE}
+}
+@inproceedings{IoTSecChallenges2017,
+  title={Security challenges in {IoT} development: a software engineering perspective.},
+  author={Nguyen-Duc, Anh and Jabangwe, Ronald and Paul, Pangkaj and Abrahamsson, Pekka},
+  booktitle={XP Workshops},
+  pages={11--1},
+  year={2017}
+}
+@article{MorinUMLforIoT2017,
+  title={Model-based software engineering to tame the {IoT} jungle},
+  author={Morin, Brice and Harrand, Nicolas and Fleurey, Franck},
+  journal={IEEE Software},
+  volume={34},
+  number={1},
+  pages={30--36},
+  year={2017},
+  publisher={IEEE}
+}
+@inproceedings{harrand2016thingml,
+  title={ThingML: a language and code generation framework for heterogeneous targets},
+  author={Harrand, Nicolas and Fleurey, Franck and Morin, Brice and Husa, Knut Eilif},
+  booktitle={Proceedings of the ACM/IEEE 19th International Conference on Model Driven Engineering Languages and Systems},
+  pages={125--135},
+  year={2016}
+}
+@article{patel2015enabling,
+  title={Enabling high-level application development for the Internet of Things},
+  author={Patel, Pankesh and Cassou, Damien},
+  journal={Journal of Systems and Software},
+  volume={103},
+  pages={62--84},
+  year={2015},
+  publisher={Elsevier}
+}
+@inproceedings{ISSTA2020Interactions,
+  title={Scalable analysis of interaction threats in {IoT} systems},
+  author={Alhanahnah, Mohannad and Stevens, Clay and Bagheri, Hamid},
+  booktitle={Proceedings of the 29th ACM SIGSOFT International Symposium on Software Testing and Analysis},
+  pages={272--285},
+  year={2020}
+}
+@inproceedings{securityUsenix2019,
+  title={Discovering and understanding the security hazards in the interactions between {IoT} devices, mobile apps, and clouds on smart home platforms},
+  author={Zhou, Wei and Jia, Yan and Yao, Yao and Zhu, Lipeng and Guan, Le and Mao, Yuhang and Liu, Peng and Zhang, Yuqing},
+  booktitle={28th USENIX Security Symposium (USENIX Security)},
+  pages={1133--1150},
+  year={2019}
+}
+@inproceedings{celik2018soteria,
+  title={Soteria: Automated {IoT} safety and security analysis},
+  author={Celik, Z Berkay and McDaniel, Patrick and Tan, Gang},
+  booktitle={Annual Technical Conference (USENIX ATC)},
+  pages={147--158},
+  year={2018}
+}
+
+@article{nestFirmwareSecu,
+  title={Smart nest thermostat: A smart spy in your home},
+  author={Hernandez, Grant and Arias, Orlando and Buentello, Daniel and Jin, Yier},
+  journal={Black Hat USA},
+  number={2015},
+  year={2014}
+}
+@article{firmwareSec2017,
+  title={Security vulnerabilities of internet of things: A case study of the smart plug system},
+  author={Ling, Zhen and Luo, Junzhou and Xu, Yiling and Gao, Chao and Wu, Kui and Fu, Xinwen},
+  journal={IEEE Internet of Things Journal},
+  volume={4},
+  number={6},
+  pages={1899--1909},
+  year={2017},
+  publisher={IEEE}
+}
+@inproceedings{firmwareSec2014,
+  title={An experimental study of security and privacy risks with emerging household appliances},
+  author={Notra, Sukhvir and Siddiqi, Muhammad and Gharakheili, Hassan Habibi and Sivaraman, Vijay and Boreli, Roksana},
+  booktitle={2014 IEEE conference on communications and network security},
+  pages={79--84},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{protocolSec2017,
+  title={{IoT} goes nuclear: Creating a ZigBee chain reaction},
+  author={Ronen, Eyal and Shamir, Adi and Weingarten, Achi-Or and O’Flynn, Colin},
+  booktitle={2017 IEEE Symposium on Security and Privacy (SP)},
+  pages={195--212},
+  year={2017},
+  organization={IEEE}
+}
+@inproceedings{protsec2016,
+  title={Mind the tracker you wear: a security analysis of wearable health trackers},
+  author={Goyal, Rohit and Dragoni, Nicola and Spognardi, Angelo},
+  booktitle={Proceedings of the 31st Annual ACM Symposium on Applied Computing},
+  pages={131--136},
+  year={2016}
+}
+@article{fouladi2013honey,
+  title={Honey, i’m home!!, hacking zwave home automation systems},
+  author={Fouladi, Behrang and Ghanoun, Sahand},
+  journal={Black Hat USA},
+  year={2013}
+}
+@inproceedings{celik2019iotguard,
+  title={{IoT}Guard: Dynamic Enforcement of Security and Safety Policy in Commodity {IoT}.},
+  author={Celik, Z Berkay and Tan, Gang and McDaniel, Patrick D},
+  booktitle={NDSS},
+  year={2019}
+}
+@article{edgeChallengesSurvey2019,
+  title={Edge computing security: State of the art and challenges},
+  author={Xiao, Yinhao and Jia, Yizhen and Liu, Chunchi and Cheng, Xiuzhen and Yu, Jiguo and Lv, Weifeng},
+  journal={Proceedings of the IEEE},
+  volume={107},
+  number={8},
+  pages={1608--1631},
+  year={2019},
+  publisher={IEEE}
+}
+@inproceedings{IznitoISSTATest2018,
+  title={Izinto: a pattern-based {IoT} testing framework},
+  author={Pontes, Pedro Martins and Lima, Bruno and Faria, Jo{\~a}o Pascoal},
+  booktitle={Companion Proceedings for the ISSTA/ECOOP 2018 Workshops},
+  pages={125--131},
+  year={2018}
+}
+
+% _---------- testing tools and papers
+@article{platformio,
+  title={PlatformIO: An open source ecosystem for {IoT} development},
+  author={Kravets, I},
+  journal={PlatformIO.[En ligne]. Disponible sur: https://platformio. org.[Consult{\'e} le: 25-sept-2019]},
+  year={2018}
+}
+@misc{ArduinoUnit,
+    author       = {Matthew  Murdoch},
+    title        = {ArduinoUnit},
+    year         = 2013,
+    url          = {https://github.com/mmurdoch/arduinounit}
+}
+@misc{piClockissues,
+    author       = {vyshwanara},
+    title        = {Lack of hardware clock in Raspberry Pi - possible time lag issues},
+    year         = 2018,
+    url          = {https://blog.pisignage.com/lack-of-hardware-clock-in-raspberry-pi-scheduling-issues/}
+    }
+    
+@inproceedings{ahmadMDBtesting2016,
+  title={Model-based testing as a service for {IoT} platforms},
+  author={Ahmad, Abbas and Bouquet, Fabrice and Fourneret, Elizabeta and Le Gall, Franck and Legeard, Bruno},
+  booktitle={International Symposium on Leveraging Applications of Formal Methods},
+  pages={727--742},
+  year={2016},
+  organization={Springer}
+}
+
+@inproceedings{rosenkranz2015Testing,
+  title={A distributed test system architecture for open-source {IoT} software},
+  author={Rosenkranz, Philipp and W{\"a}hlisch, Matthias and Baccelli, Emmanuel and Ortmann, Ludwig},
+  booktitle={Proceedings of the 2015 Workshop on {IoT} challenges in Mobile and Industrial Systems},
+  pages={43--48},
+  year={2015}
+}
+@inproceedings{testingtools2018,
+  title={A brief overview of existing tools for testing the internet-of-things},
+  author={Dias, Jo{\~a}o Pedro and Couto, Fl{\'a}vio and Paiva, Ana CR and Ferreira, Hugo Sereno},
+  booktitle={2018 IEEE International Conference on Software Testing, Verification and Validation Workshops (ICSTW)},
+  pages={104--109},
+  year={2018},
+  organization={IEEE}
+}
+@inproceedings{joorabchi2013real,
+  title={Real challenges in mobile app development},
+  author={Joorabchi, Mona Erfani and Mesbah, Ali and Kruchten, Philippe},
+  booktitle={2013 ACM/IEEE International Symposium on Empirical Software Engineering and Measurement},
+  pages={15--24},
+  year={2013},
+  organization={IEEE}
+}
+@article{zou2019smart,
+  title={Smart contract development: Challenges and opportunities},
+  author={Zou, Weiqin and Lo, David and Kochhar, Pavneet Singh and Le, Xuan-Bach D and Xia, Xin and Feng, Yang and Chen, Zhenyu and Xu, Baowen},
+  journal={IEEE Transactions on Software Engineering},
+  year={2019},
+  publisher={IEEE}
+}
+@inproceedings{krishna2019iot,
+  title={{IoT} Composer: Composition and deployment of {IoT} applications},
+  author={Krishna, Ajay and Le Pallec, Michel and Mateescu, Radu and Noirie, Ludovic and Sala{\"u}n, Gwen},
+  booktitle={2019 IEEE/ACM 41st International Conference on Software Engineering: Companion Proceedings (ICSE-Companion)},
+  pages={19--22},
+  year={2019},
+  organization={IEEE}
+}
+@article{chen2017application,
+  title={Application of fault tree analysis and fuzzy neural networks to fault diagnosis in the internet of things ({IoT}) for aquaculture},
+  author={Chen, Yingyi and Zhen, Zhumi and Yu, Huihui and Xu, Jing},
+  journal={Sensors},
+  volume={17},
+  number={1},
+  pages={153},
+  year={2017},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+@inproceedings{hnat2011hitchhiker,
+  title={The hitchhiker's guide to successful residential sensing deployments},
+  author={Hnat, Timothy W and Srinivasan, Vijay and Lu, Jiakang and Sookoor, Tamim I and Dawson, Raymond and Stankovic, John and Whitehouse, Kamin},
+  booktitle={Proceedings of the 9th ACM Conference on Embedded Networked Sensor Systems},
+  pages={232--245},
+  year={2011}
+}
+@inproceedings{voas2018testing,
+  title={Testing {IoT} Systems},
+  author={Voas, Jeff and Kuhn, Rick and Laplante, Phil},
+  booktitle={2018 IEEE Symposium on Service-Oriented System Engineering (SOSE)},
+  pages={48--52},
+  year={2018},
+  organization={IEEE}
+}
+@inproceedings{chan2007fault,
+  title={A fault taxonomy for web service composition},
+  author={Chan, KS May and Bishop, Judith and Steyn, Johan and Baresi, Luciano and Guinea, Sam},
+  booktitle={International Conference on Service-Oriented Computing},
+  pages={363--375},
+  year={2007},
+  organization={Springer}
+}
+@inproceedings{corno2019towards,
+  title={Towards Computational Notebooks for {IoT} Development},
+  author={Corno, Fulvio and De Russis, Luigi and S{\'a}enz, Juan Pablo},
+  booktitle={Extended Abstracts of the 2019 CHI Conference on Human Factors in Computing Systems},
+  pages={1--6},
+  year={2019}
+}
+@article{corno2019challenges,
+  title={On the challenges novice programmers experience in developing {IoT} systems: A survey},
+  author={Corno, Fulvio and De Russis, Luigi and S{\'a}enz, Juan Pablo},
+  journal={Journal of Systems and Software},
+  volume={157},
+  pages={110389},
+  year={2019},
+  publisher={Elsevier}
+}
+@article{atzori2010internet,
+  title={The internet of things: A survey},
+  author={Atzori, Luigi and Iera, Antonio and Morabito, Giacomo},
+  journal={Computer networks},
+  volume={54},
+  number={15},
+  pages={2787--2805},
+  year={2010},
+  publisher={Elsevier}
+}
+@article{bormann2014terminology,
+  title={Terminology for constrained-node networks},
+  author={Bormann, Carsten and Ersue, Mehmet and Keranen, Ari},
+  journal={Internet Engineering Task Force (IETF): Fremont, CA, USA},
+  pages={2070--1721},
+  year={2014}
+}
+@article{javed2018OS,
+  title={Internet of Things ({IoT}) operating systems support, networking technologies, applications, and challenges: A comparative review},
+  author={Javed, Farhana and Afzal, Muhamamd Khalil and Sharif, Muhammad and Kim, Byung-Seo},
+  journal={IEEE Communications Surveys \& Tutorials},
+  volume={20},
+  number={3},
+  pages={2062--2100},
+  year={2018},
+  publisher={IEEE}
+}
+@article{lin2017survey,
+  title={A survey on internet of things: Architecture, enabling technologies, security and privacy, and applications},
+  author={Lin, Jie and Yu, Wei and Zhang, Nan and Yang, Xinyu and Zhang, Hanlin and Zhao, Wei},
+  journal={IEEE Internet of Things Journal},
+  volume={4},
+  number={5},
+  pages={1125--1142},
+  year={2017},
+  publisher={IEEE}
+}
+@book{rowley2008organizing,
+  title={Organizing knowledge: an introduction to managing access to information},
+  author={Rowley, Jennifer E and Hartley, Richard J},
+  year={2008},
+  publisher={Ashgate Publishing, Ltd.}
+}
+@article{usman2017taxonomies,
+  title={Taxonomies in software engineering: A systematic mapping study and a revised taxonomy development method},
+  author={Usman, Muhammad and Britto, Ricardo and B{\"o}rstler, J{\"u}rgen and Mendes, Emilia},
+  journal={Information and Software Technology},
+  volume={85},
+  pages={43--59},
+  year={2017},
+  publisher={Elsevier}
+}
+@book{kamber2001data,
+  title={Data mining: Concepts and techniques},
+  author={Kamber, Micheline and Pei, Jian and others},
+  volume={2},
+  year={2001},
+  publisher={Morgan Kaufmann Publishers San Francisco}
+}
+
+@misc{iotbug:290,
+  title={Lamps not identified as lamps with f/w 1.3.14},
+  author={Github},
+  year={2018},
+  note = {https://github.com/ggravlingen/pytradfri/issues/135}
+}
+
+@inproceedings{iottestbed,
+  title={FIT {IoT}-LAB: A large scale open experimental {IoT} testbed},
+  author={Adjih, Cedric and Baccelli, Emmanuel and Fleury, Eric and Harter, Gaetan and Mitton, Nathalie and Noel, Thomas and Pissard-Gibollet, Roger and Saint-Marcel, Frederic and Schreiner, Guillaume and Vandaele, Julien and others},
+  booktitle={2015 IEEE 2nd World Forum on Internet of Things (WF-{IoT})},
+  pages={459--464},
+  year={2015},
+  organization={IEEE}
+}
+    
+@misc{iotify,
+    author       = {IOTIFITY},
+    title        = {Advanced {IoT} system simulation engine and test automation for enterprise {IoT} apps },
+    url          = {https://iotify.io/}
+    } 
+ 
+ @misc{gizmodoblogpost,
+    author       = {Victoria Song},
+    title        = {The Never Ending Death of Smart Home Gadgets },
+    year={2020},
+    month={Mar},
+    url          = {https://gizmodo.com/the-never-ending-death-of-smart-home-gadgets-1842456125}
+}  
+ @misc{iotforallblogpost,
+    author       = {Pod Group},
+    title        = {Why Can’t My Dishwasher Program My TV? The Problems With Smart Homes},
+    year={2020},
+    month={February},
+    url          = {https://www.iotforall.com/smart-home-problems/}
+}  
+ @misc{UKregulations,
+    author       = {Charles Towers-Clark},
+    title        = {UK To Introduce New Law For {IoT} Device Security},
+    year={2019},
+    month={May},
+    url          = {https://www.forbes.com/sites/charlestowersclark/2019/05/02/uk-to-introduce-new-law-for-iot-device-security/#72f4d763579d}
+}
+@article{hung2017leading,
+  title={Leading the {{IoT}}, {Gartner} insights on how to lead in a connected world},
+  author={Hung, Mark},
+  journal={Gartner Research},
+  pages={1--29},
+  year={2017}
+}
+
+@article{statista2018internet,
+  title={Internet of Things ({IoT}) Connected Devices Installed Base Worldwide from 2015 to 2025 (in Billions)},
+  author={Schwandt, F},
+  journal={Statista},
+  year={2016}
+}
+
+
+    @inproceedings{looga2012mammoth,
+  title={Mammoth: A massive-scale emulation platform for internet of things},
+  author={Looga, Vilen and Ou, Zhonghong and Deng, Yang and Yl{\"a}-J{\"a}{\"a}ski, Antti},
+  booktitle={2012 IEEE 2nd International Conference on Cloud Computing and Intelligence Systems},
+  volume={3},
+  pages={1235--1239},
+  year={2012},
+  organization={IEEE}
+}
+
+@inproceedings{pontes2018test,
+  title={Test patterns for {IoT}},
+  author={Pontes, Pedro Martins and Lima, Bruno and Faria, Jo{\~a}o Pascoal},
+  booktitle={Proceedings of the 9th ACM SIGSOFT International Workshop on Automating TEST Case Design, Selection, and Evaluation},
+  pages={63--66},
+  year={2018}
+}
+@article{gutierrez2019evolutionary,
+  title={Evolutionary mutation testing for {{IoT}} with recorded and generated events},
+  author={Guti{\'e}rrez-Madro{\~n}al, Lorena and Garc{\'\i}a-Dom{\'\i}nguez, Antonio and Medina-Bulo, Inmaculada},
+  journal={Software: Practice and Experience},
+  volume={49},
+  number={4},
+  pages={640--672},
+  year={2019},
+  publisher={Wiley Online Library}
+}
+@article{gutierrez2018iot,
+  title={{{IoT}}--TEG: Test event generator system},
+  author={Guti{\'e}rrez-Madro{\~n}al, Lorena and Medina-Bulo, Inmaculada and Dom{\'\i}nguez-Jim{\'e}nez, Juan Jos{\'e}},
+  journal={Journal of Systems and Software},
+  volume={137},
+  pages={784--803},
+  year={2018},
+  publisher={Elsevier}
+}
+
+@inproceedings{alqassem2014taxonomy,
+  title={A taxonomy of security and privacy requirements for the Internet of Things ({IoT})},
+  author={Alqassem, Israa and Svetinovic, Davor},
+  booktitle={2014 IEEE International Conference on Industrial Engineering and Engineering Management},
+  pages={1244--1248},
+  year={2014},
+  organization={IEEE}
+}
+
+@article{chen2018internet,
+  title={Internet-of-Things security and vulnerabilities: Taxonomy, challenges, and practice},
+  author={Chen, Kejun and Zhang, Shuai and Li, Zhikun and Zhang, Yi and Deng, Qingxu and Ray, Sandip and Jin, Yier},
+  journal={Journal of Hardware and Systems Security},
+  volume={2},
+  number={2},
+  pages={97--110},
+  year={2018},
+  publisher={Springer}
+}
+
+@inproceedings{babar2010proposed,
+  title={Proposed security model and threat taxonomy for the Internet of Things ({IoT})},
+  author={Babar, Sachin and Mahalle, Parikshit and Stango, Antonietta and Prasad, Neeli and Prasad, Ramjee},
+  booktitle={International Conference on Network Security and Applications},
+  pages={420--429},
+  year={2010},
+  organization={Springer}
+}
+
+
+--
+EOF

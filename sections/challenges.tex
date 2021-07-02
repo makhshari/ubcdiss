@@ -1,0 +1,124 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\chapter{Challenges}
+\label{ch:Challenges}
+
+\section{Methodology}
+
+
+\section{Findings}
+In this section, we provide our findings regarding the challenges faced by IoT developers.
+
+\subsection{Testing and Debugging Challenges}
+\textbf{Relying on access to the real device}
+According to seven interviewees, several GitHub issues (DEVICE-OS/1871, MYCONTROLLER/485, TESLA-API/43), and 74\% of survey participants, IoT developers rely on access to devices to test and debug their IoT system, by tasks such as manual reset or device output monitoring (P\textsubscript{2,3,7}).
+
+
+In some scenarios, devices are out of reach or in hard-to-access locations thus making remote debugging more essential. 
+Four interviewees believed that practical simulation solutions are required for better IoT testing and debugging. As P\textsubscript{5}, a middleware developer stated \enquote{IoT device vendors do not provide a mock of their devices, and we have to do reverse engineering on the actual hardware devices rather than working with the simulated ones.} Also as P\textsubscript{5,8,9} stated, current simulation solutions in IoT are not mature enough and they are only valid for limited scenarios, such as testing high-level controllers or small unit tests, rather than being suitable for all levels of testing such as system testing.
+
+ \begin{table}%[htbp]
+\caption{Survey Results: Bug Taxonomy}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{ l | r | r r r | r }
+\hline
+\multicolumn{1}{l|}{\textbf{Bug Category}} &\multicolumn{1}{l|}{\textbf{Have faced}}& \multicolumn{3}{c|}{\textbf{Frequency}}& \multicolumn{1}{c}{\textbf{Is Severe}} \\
+& &Frequently&Sometimes& Rarely&  \\
+\hline
+Device: Hardware&82.50\% &30.30\% &39.06\% &30.64\% &43.61\%  \\
+Device: Firmware&85.75\% & 24.20\%& 44.48\%& 31.32\%& 42.78\% \\
+Communication: Connectivity& 97.22\% &50.29\% &38.29\% &11.42\% &62.78\% \\
+Communication: Messaging&92.22\% &33.74\% &36.14\% &30.12\% &40.56\% \\
+Cloud: Device Management& 90.93\% &25.06\% &46.43\% & 28.51\%&40.75\% \\
+Cloud: Automation& 91.67\%& 20.00\% &44.24\% &35.76\% &32.22\% \\
+Compatibility& 86.11\% &23.88\% &40.00\% &36.12\% &36.11\% \\
+Dev&87.89\% &24.53\% & 39.44\%&36.03\% &38.89\% \\
+\hline
+\end{tabular} }
+\label{tab2}
+\end{table}
+
+Some relevant challenges mentioned in the survey are \emph{affording to have all types of IoT devices}, \emph{complex custom logic for effective IoT device mocking and simulation}, and \emph{setting up test environments with IoT devices}. 
+
+\textbf{Fault localization}
+According to eight interviewees, nine survey comments, and also half of the survey participants, fault localization is a barrier due to lack of transparency in the operations of IoT systems. As P\textsubscript{7} mentioned \enquote{there is no environment that logs everything.} One contributing factor to this is the difficulty of tracing executions of numerous external components in IoT systems. P\textsubscript{3} mentioned using open-source solutions just to be able to log everything. 
+
+
+Another factor that impacts fault localization is the existence of hidden failures. 
+
+As an example, P\textsubscript{7} mentioned \enquote{It's hard to recognize on the app that the temperature the device is reporting now is for several minutes ago.} Besides, P\textsubscript{2,4} mentioned examples of failures that only show up after the device has worked for a specific amount of time (five minutes for P\textsubscript{2}, several hours for P\textsubscript{4}), which is also observed in GitHub issues (DEVICE-OS/1926, ZWAVE2MQTT/141, VSCP/207). This issue makes IoT failures more unpredictable and may hide developers' faults. Another issue toward fault localization is the lack of tools and developers' support. For instance, P\textsubscript{3} inspects device messages in bit-level by monitoring communications using Wireshark. P\textsubscript{2}, as a hardware platform developer, said \enquote{Since there is no feedback of errors or corruptions from devices, we've added some LEDs to them to track if something is working in the device level or not.}
+
+
+\textbf{Reproducing IoT bugs}
+In addition to observing several GitHub discussions (DITTO/414, TESLA-API/68), we collected four tags from interviews, and three survey comments regarding the challenge of reproducing IoT bugs. Besides the already mentioned factors which harden bug reproduction, such as limited access to devices or hidden failures, some bugs only happen with a specific device setting or with certain environments of the IoT system. IoT developers cannot reproduce these bugs unless they have exactly the same setting or environment. For instance, a survey comment indicated \enquote{It's hard to reproduce some memory-related bugs in X86 devices when they have ASLR enabled.}
+% due to existence of ASLR mechanism in these devices that interfere with these bugs
+Also, we observed other examples such as TEMPERATURE-MACHINE/13: \enquote{I can reproduce the bug with the help of ice packs taken at three different temperatures from my freezer.}
+
+\textbf{Combinatorial explosion}
+In addition to all the evolving components in traditional software, such as libraries and operating systems, there are more changing factors in IoT systems. Hardware devices produced by various manufacturers with different standards, device integration middlewares, and communication protocols are some examples of these extra changing factors in IoT. With all these components releasing new versions at a specific rate, a combinatorial explosion problem is likely to happen when developers want to cover all possible combinations with test cases.
+One relevant statement is \enquote{I do not have all kinds of bulbs, remotes, and sensors, so I could be completely wrong!} in a GitHub discussion (PYTRADFRI/135). We could collect eight tags come from four interviewees and two tags from survey comments regarding the challenge of combinatorial testing. As one example, P\textsubscript{9} said \enquote{We have to test with 10 or 15 different devices each time}. Also, 80 percent of survey respondents agree with the combinatorial explosion as a testing challenge for IoT developers, and P\textsubscript{8} mentioned it as the most severe testing challenge. 
+
+\textbf{Testing and debugging edge-cases}
+Covering large-scale scenarios (e.g. too many devices) and exceptional cases (e.g. temperatures below zero) add to the test coverage obstacles. This challenge is mentioned by four interviewees, three survey participants, and observed in several GitHub discussions (DEVICE-OS/1926, TEMPERATURE-MACHINE/13). As one example, P\textsubscript{4} said \enquote{We should put effort to write proper tests against concurrency issues since we should be able to handle 140,000 HTTP requests per second because our IoT system is deployed in different cities.} Additionally, this challenge is the most experienced testing challenge (83\% of respondents). 
+
+\textbf{Immature testing culture}
+Figure~\ref{fig:testing} shows an over-reliant on IoT developers for testing as 64\% of participants mentioned developers are the main testers in their IoT project.
+
+
+As P\textsubscript{6}, a developer of a popular IoT project with near 7K stars, stated \enquote{We do not have a QA team. it's up to developers to do testing, either manually or writing automated tests.} Often, software developers do not have the skills to test the hardware side. P\textsubscript{9}, a software developer of an IoT platform with 1.5K stars, told that the bottle-neck of their IoT platform is testing the hardware side since they do not have sufficient knowledge for tools and practices of hardware testing.
+
+
+As Figure~\ref{fig:testing} shows, IoT testing highly depends on manual tasks as only 5\% of participants reported testing completely automatic. Also, during interviews, four interviewees mentioned manual approaches for IoT testing. According to the survey respondents, the most adopted IoT testing approach is hybrid strategies. An example of such an approach is described by one IoT developer \enquote{Services which don't interact with devices directly are tested automatically, but checking the entire platform with devices requires manual testing.} 
+
+
+ \begin{figure}%[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/testing.pdf}
+  \caption{Survey responses about testing in IoT projects.
+  }
+  \label{fig:testing}
+\end{figure}
+
+\subsection{Heterogeneity}
+\textbf{Device and protocol fragmentation} Some of the IoT developers reported developing separately for each device or protocol in order to fulfill interoperability (P\textsubscript{2-5}, P\textsubscript{8}). For instance, P\textsubscript{3} stated he has to develop a distinct adapter for talking with each particular device. He mentioned \textit{"There is no guarantee that something that works with brand A also works with brand B."} On the other hand, P\textsubscript{6} noted that their platform is restricted to certain protocols instead of devices. Other developers mentioned fragmentation challenges by pointing out \emph{fragmentation on the same platform} and \emph{time to implement new technologies.} In addition, the majority of the interviewees (seven out of nine), 11 survey comments, and near half of the survey respondents find integration with a new IoT device or communication protocol challenging. 
+
+
+\textbf{Third-party breaking changes}
+Third-party changes challenge is mentioned by all interviewees (23 tags) and is agreed by 63\% of survey participants and also there are several comments in the survey about it (eight tags). Three interviewees stated that third-parties make breaking changes without prior notice. Also, P\textsubscript{5,8} mentioned examples where the third-party system stopped supporting a device or a service which caused breakage in their IoT system. Four interviewees (P\textsubscript{2,4,5,8}) explicitly mentioned that it's hard to keep pace with all the rapid changes from various third-parties such as device manufacturers. 
+
+
+\textbf{Diversity of technologies, backgrounds, and requirements}
+Challenges posed by the fundamental diversity of IoT technologies are the most repeated challenges among both interviews (30 tags) and survey comments (25 tags). Also, it is agreed by 60\% of survey respondents. Several participants mentioned that IoT development requires diverse development skills such as hardware programming and knowledge in dealing with network protocols.
+
+Commonly, developers do not go through this learning curve: \enquote{developers tend to use protocols which they are familiar with but sometimes better solutions exist and developers do not know/use them.} 
+
+P\textsubscript{2,3,7,8} and several survey comments mentioned that it is hard to understand low-quality documentation of certain device manufacturers and interpret complex response payloads from particular devices. P\textsubscript{2,3} and two survey comments also mentioned that user requirements, as well as users' backgrounds and skills, can be very disparate and it's challenging to develop a generalized IoT system that can support all possible use cases. For instance, P\textsubscript{2} mentioned that they had to include more pins on their hardware and add support for obscured sensors to cover all user requirements. Other challenges are \emph{large search-space for selecting compatible devices or libraries} (P\textsubscript{5,7,8}), and \emph{dealing with diverse regulations and standards} (P\textsubscript{5,8}, and three survey comments).
+
+
+\subsection{Other challenges}
+\textbf{Security}
+As the survey results suggest, more than half of the IoT developers are not confident about the security of the third-party components, such as operating systems and libraries, used in their IoT system. Also, from a total of 14 participants who mentioned security-related challenges, six of them posed it as the most important challenge. Moreover, 66\% of IoT developers find security a complicated task. Our interview participants mentioned security issues rooted in the device firmware (P\textsubscript{1,3,4}), network protocols (P\textsubscript{7,8}), and automation rules (P\textsubscript{6}). One of the main challenges, also mentioned by P\textsubscript{7}, is generating and storing access tokens within IoT devices that have processing and storage limitations. Similarly, near 60\% of IoT developers think that device constraints make security tasks challenging. Another emerged theme from our data is related to the challenge of end-to-end security, from the IoT device to the cloud. Some (P\textsubscript{8,9}) believe that the security of the local communication between the device and IoT gateway is usually underestimated while it can be highly insecure. As P\textsubscript{9} argued, \enquote{to make the development of the IoT system faster, developers don't consider the security of the local network}. Other challenges mentioned are \emph{the complexity of the certification process}, \emph{supporting different use cases while following security protocols}, and \emph{existence of various attack surfaces}.
+
+\textbf{Releasing updates for IoT devices}  Half of the interviewees believe that releasing software upgrades or security patches for already shipped devices (P\textsubscript{5,8}) is inevitably challenging. Six IoT developers in the survey made comments such as \enquote{getting critical updates installed on already sold devices} or \enquote{firmware updates in large deployments} regarding update challenges.
+
+\textbf{Programming for constrained devices}
+63\% of the participants agreed that device constraints make IoT development harder. Most IoT developers struggle to design and implement software in a way to consume less processing power and energy. Device limitations in different layers have also been mentioned by our interviewees (P\textsubscript{2,3,6,8}).
+
+\textbf{Handling failures} An interesting theme that 62\% of our participants agreed with is the challenge of handling failures in IoT systems, in a way to avoid losing data and making the system unavailable. As P\textsubscript{4,5} and five IoT developers from the survey described, developers have to design the system to be tolerable to failures and data losses. \emph{Handling a backlog of sensor data in gateways or constraint devices in case of disconnections} (P\textsubscript{6}, ZWAVE2MQTT/141), and \emph{reducing mean-time-to-repair (MTTR) on already shipped devices} are some of the mentioned reliability challenges. 
+
+\section{Discussion}
+\textbf{IoT testing solutions are not adopted in practice}
+Various IoT testing tools and methods~\cite{testingtools2018}~\cite{pontes2018test} have been proposed in the literature, such as device simulators~\cite{iotify} and emulators~\cite{looga2012mammoth}, IoT unit testing frameworks~\cite{ArduinoUnit,platformio}, and IoT testbeds~\cite{iottestbed}. However, none of them seems to be adopted by IoT developers as only 9\% of them mentioned using third-party services as their main testing approach. Besides, although IoT test automation frameworks exist~\cite{iotify}, IoT testing is still carried out in a manual and ad-hoc manner, as 95\% of the IoT developers in our study perform manual testing practices. Also, as it is mentioned by P\textsubscript{5,8}, device simulation does not support simulating all types of devices. One possible future direction is having device simulators and emulators specifically crafted for each IoT device individually to virtualize their characteristics and bypass the need for the presence of the actual hardware device during testing. Also, as the importance of combinatorial testing in the context of IoT has been discussed previously in the literature~\cite{voas2018testing}, more focus is needed on combinatorial testing tools that consider the heterogeneous nature of IoT devices and protocols.
+
+\textbf{Lack of device-level monitoring tool support}
+Investigating the log data of IoT devices is a common debugging task for IoT developers. This task becomes even more important as the device status issues are among the most frequent bug categories. This bug category has appeared in around half of the bug reports in our dataset, and most IoT developers reported that they need to log communications or internal executions of the device as part of the debugging process for these bugs (P\textsubscript{1,2,3,4,7}). There is no universal tool that receives log data from all types of devices, and developers often have to manually employ naive approaches to monitor device status and communications, such as serial print for each device separately (P\textsubscript{2,7}) or using general-purpose tools like Wireshark (P\textsubscript{3,7}). Existing logging solutions to track devices are believed to be inefficient as their limitations were discussed by several IoT developers. One IoT developer best mentioned it as \enquote{even if some devices provide log libraries and tools, they should be manually aggregated or traced from each component separately to track an issue.} 
+
+\textbf{Fragmented and ever-changing ecosystem of IoT}
+One of the most serious challenges of IoT development nowadays is the rapid obsolescence of hardware devices. As several IoT experts and blog posts~\cite{gizmodoblogpost,iotforallblogpost} describe it, the pace that IoT devices get obscured and stop being supported by the providers is increasing. New updates for IoT devices often make the older devices unusable while they also break IoT developers' implementations. Within this ever-changing ecosystem of IoT, developers have to struggle with maintaining their device-specific or protocol-specific code. IoT developers, not only have to afford all versions of devices to keep up with these changes but also they have to allocate much of their development effort into migrating from one version or ecosystem to the other. As this issue targets both IoT consumers and developers, in 2019, some countries put regulations on the minimum time that IoT providers can release updates after the device is bought~\cite{UKregulations}. Furthermore, some solutions such as contract-based testing were suggested by interviewees (P\textsubscript{5}), to ensure continuous compatibility with third-party systems. However, none of these methods can be a long-term and universal solution as they are still dependent on the contracts and regulations in place.
+
+
+
+
+\endinput
+

@@ -1,0 +1,27 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\chapter{Background}
+\label{ch:background}
+
+\section{IoT Architecture}
+Figure XXX% \autoref{fig:arch} 
+ shows a typical architecture of an IoT system~\citep{towardsIoTDefinition,stojkoska2017review,vcolakovic2018IoT,eclipse2016three}. 
+
+\subsection{Device Layer}
+The device layer at the bottom includes smart programmable things interacting with the physical world through their embedded sensors and actuators. Some IoT devices employ light embedded operating systems (e.g. contiki, RIOT, TinyOS) that have support for various programming languages allowing developers to write embedded code on top of the device OS~\cite{javed2018OS}, while bare metal IoT devices run the embedded code directly on their hardware processor.
+
+\subsection{Gateway Layer}
+This layer contains gateway devices with fewer resource constraints with the ability to handle telemetry data collection, processing, and routing locally on the edge. Gateway devices can handle the device-device and device-cloud interoperability by interpreting diverse communication protocols such as MQTT, CoAP, and HTTP~\cite{tschofenig2014architectural}. 
+
+\subsection{Cloud Layer}
+Remote IoT cloud servers accumulate and process all telemetry data, and communicate with heterogeneous IoT devices to control and monitor them remotely. IoT cloud servers rule engine lets users write automation logic between IoT devices to define interoperability behaviours of the IoT system~\cite{securityUsenix2019}. 
+
+\subsection{Application Layer}
+
+
+
+
+
+\endinput
+

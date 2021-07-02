@@ -1,0 +1,23 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\chapter{Related Work}
+\label{ch:literature}
+\section{Related Work}
+\textbf{Bugs and challenges of IoT systems}
+Although a few previous studies have acknowledged some categories of bugs in IoT systems~\cite{IoTOSBugs,chen2017application,hnat2011hitchhiker}, no study is concerned about categorizing all types of real bugs in IoT systems using a systematic approach. In a recent 2020 study~\cite{IoTOSS2020}, certain peculiarities of open-source IoT repositories were analyzed via examining how developers contribute to IoT repositories. However, this study does not consider bugs and experiences of IoT developers to reach conclusions about the characteristics of IoT development.
+
+A growing body of literature has investigated issues and design flaws that cause safety and security violations in IoT systems as well as security challenges in IoT~\cite{IoTSecChallenges2017,edgeChallengesSurvey2019}. More specifically, in smart home ecosystem, security bugs related to the device firmware~\cite{nestFirmwareSecu,firmwareSec2017,firmwareSec2014}, communication protocols~\cite{protocolSec2017,protsec2016,fouladi2013honey}, smart apps, and safety of their interactions~\cite{celik2019iotguard,celik2018soteria,ISSTA2020Interactions}, as well as interactions of different components of IoT systems~\cite{securityUsenix2019} have been studied. There exist taxonomies for describing characteristics of IoT systems with respect to security and privacy concerns~\cite{alqassem2014taxonomy} \cite{chen2018internet}. However, these papers do not present their taxonomy construction process, and they are focused on a different goal, namely security requirements and attacks.
+
+Also several studies have investigated challenges of testing IoT systems~\cite{ahmadMDBtesting2016,rosenkranz2015Testing,testingtools2018,voas2018testing}. Various solutions for IoT testing have been proposed based on e.g., model-based testing~\cite{ahmadMDBtesting2016}, IoT mutation operators and test event generators~\cite{gutierrez2019evolutionary,gutierrez2018iot}, and testing tools~\cite{testingtools2018}. Also, tools and methodologies have been proposed to aid IoT developers in developing of IoT systems~\cite{MorinUMLforIoT2017,krishna2019iot,corno2019towards}. 
+
+The challenges of developing IoT systems have been discussed from different perspectives~\cite{stojkoska2017review,vcolakovic2018IoT,hnat2011hitchhiker}. A previous study investigated the challenges of novice IoT developers to see what development tasks are more challenging for them~\cite{corno2019challenges} and developed a tool to help the novice developers~\cite{corno2019towards}. However, no study has tried to study IoT developers' challenges systematically by interviewing and surveying IoT practitioners in the field.
+
+
+\textbf{Bug mining and developers' challenges}
+Although mining IoT repositories has not received any attention in the literature, a growing number of studies have employed mining of software repositories or issue trackers to characterize bugs in Machine Learning systems~\cite{DlTaxFaults,zhangempiricalDL2020ICSE,islam2019comprehensive, TensorFBugsISSTA}. Some prior researches have followed this approach to identify bug categories in Blockchain systems~\cite{blockChainBugs}, Big Data computing platforms~\cite{bigDataIssues},  web applications~\cite{jsBugsOcariza} and service compositions~\cite{chan2007fault}. 
+In addition, developers' challenges have been investigated in different contexts such as mobile app development~\cite{joorabchi2013real}, and Blockchain development~\cite{zou2019smart}. 
+
+
+\endinput
+

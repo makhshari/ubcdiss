@@ -94,7 +94,23 @@
 %% END FONTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{xcolor,colortbl}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{ragged2e}
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage{balance}
+ \usepackage[utf8]{inputenc}
+ \usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{csquotes}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,7 +164,9 @@
 %% \citet{} to produce an author-and-reference citation,
 %% \citep{} to produce a parenthetical citation.
 %% We use \citeeg{} to provide examples
+
 \usepackage[numbers,sort&compress]{natbib}
+
 \newcommand{\citeeg}[1]{\citep[e.g.,][]{#1}}
 
 %% The titlesec package provides commands to vary how chapter and
@@ -315,10 +333,10 @@
 %% Document meta-data: be sure to also change the \hypersetup information
 %%
 
-\title{On the Use of the \texttt{ubcdiss} Template}
+\title{IoT Bugs and Development Challenges}
 %\subtitle{If you want a subtitle}
 
-\author{Johnny Canuck}
+\author{Amir Makhshari}
 \previousdegree{B. Basket Weaving, University of Illustrious Arts, 1991}
 \previousdegree{M. Silly Walks, Another University, 1994}
 
@@ -328,14 +346,14 @@
 \institution{The University of British Columbia}
 \campus{Vancouver}
 
-\faculty{The Faculty of XXX}
-\department{Basket Weaving}
-\submissionmonth{April}
-\submissionyear{2192}
+\faculty{The Faculty of Applied Science}
+\department{Electrical and Computer Engineering}
+\submissionmonth{July}
+\submissionyear{2021}
 
 % details of your examining committee
-\examiningcommittee{John Smith, Materials Engineering}{Supervisor}
-\examiningcommittee{Mary Maker, Materials Engineering}%
+\examiningcommittee{Ali Mesbah}{Supervisor}
+\examiningcommittee{Karthik Pattabiraman}%
     {Supervisory Committee Member}
 \examiningcommittee{Nebulous Name, Department}{Supervisory Committee Member}
 \examiningcommittee{Magnus Monolith, Other Department}{Additional Examiner}
@@ -427,7 +445,12 @@
 \acresetall	% reset all acronyms used so far
 
 %    1. Introduction
-\include{intro}
+\include{./sections/intro}
+\include{./sections/background}
+%\include{./sections/bugs}
+%\include{./sections/challenges}
+%\include{./sections/literature}
+%\include{./sections/conclusion}
 
 %    2. Main body
 % Generally recommended to put each chapter into a separate file

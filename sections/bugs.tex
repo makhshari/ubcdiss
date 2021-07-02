@@ -1,0 +1,245 @@
+%% The following is a directive for TeXShop to indicate the main file
+%%!TEX root = diss.tex
+
+\chapter{IoT Bugs}
+\label{ch:bugs}
+
+
+\section{Motivation}
+
+ \begin{figure}[t]
+  \centering 
+   \includegraphics[width=\linewidth]{./imgs/motiv.pdf}
+  \caption{A typical layered architecture of IoT systems and an example of an IoT bug}
+  \label{fig:arch}
+\end{figure}
+
+
+We use a real IoT bug to motivate our study of bugs and developer challenges in IoT systems. 
+Figure \ref{fig:arch} shows (on the right side) the steps that IoT developers have taken to find the root cause of the bug report PYTRADFRI/135~\cite{iotbug:290}. This bug occurred in a smart home environment where different devices should be connected to a home automation server with the help of a gateway device.
+
+
+Based on developers' discussions, the first manifestation of this bug happens at the application layer. A light bulb device (D3) is mistakenly recognized as a sensor device (F\textsubscript{1}) as the user adds it, and also the Android app crashes (F\textsubscript{2}) once it tries to turn the light bulb off (step 1 and 2). Initially, the developers suspected the root cause of the bug to be the incompatibility of a gateway library with the home automation server (step 3).
+
+
+However, further investigation of the failure in the edge layer (step 4), revealed that the gateway misidentifies D3 as a remote controller (F\textsubscript{3}). Since the gateway in this system relies mainly on a specific format of response data from devices to identify their types properly, potential inconsistencies of the payload data from the subject device were also investigated (step 5). 
+
+
+Also, since the device battery and distance to the gateway could affect the pairing process, developers tried pairing in different circumstances (step 6). After none of the candidate causes showed as the potential reason for the bug, the root cause was identified as an external bug in the firmware of the G2 gateway device (step 7) and resetting both the device and the gateway and pairing them again solved the issue (step 8). But surprisingly F\textsubscript{2} continued to exist. After monitoring the data that the app receives via Wireshark, the root cause of F\textsubscript{2} was identified as a fault in the Android app code (step 9).
+
+
+As we can see in this example, distribution of failures and candidate causes in different layers, dealing with behaviours of diverse devices such as comparing their payload, and depending on naive debugging practices such as monitoring network traffic, make it extremely hard for developers to deal with IoT bugs. Despite these compelling challenges, previous studies~\cite{hnat2011hitchhiker,corno2019challenges,stojkoska2017review,chen2017application,IoTOSBugs} do not take into consideration real-world experiences of IoT developers. In this paper, we aim to provide a systematic and generalized understanding of bugs and challenges in IoT by mainly considering IoT developers' experiences.
+
+
+\section{Methodology}
+Our goal is to characterize software bugs in IoT systems and understand the challenges developers face in practice. To this end, we address the following research questions in this work:
+\begin{itemize}
+\item {\verb|RQ1|}: What are the classes of bugs in IoT systems?
+\item {\verb|RQ2|}: What challenges do IoT developers face in practice?
+\end{itemize}
+In order to answer these questions, we conduct an empirical investigation consisting of two phases. In the first phase (RQ1), we analyze 323 issues and pull requests (PR) from open-source IoT projects. We use the findings to form the first taxonomy of bugs in IoT systems. In the second phase (RQ2), we conduct a qualitative study through (1) semi-structured interviews with IoT developers to discover new categories of bugs and challenges, (2) a survey of IoT developers to validate the findings and gain new insights. All our quantitative and qualitative data is available online~\cite{repPack} 
+
+\subsection{IoT Bug Categorization}
+\subsubsection{Collecting bug reports} \label{bugCollection}
+  The initial step is to find repositories that are representative of IoT projects. We employed the ``GitHub topic feature'' to find IoT-related repositories. According to GitHub's official website~\cite{gitTopic}, Topics are labels that create subject-based connections between GitHub repositories. 
+
+
+  We searched among topics with related keywords such as "internet-of-things" and "IoT" and we added the top three topics ``IoT-application'', ``IoT-platform'', and ``IoT-device'' from the results to our list of targeted topics. Initially, we collected 8,774 repositories using these five topics in January 2020. We excluded repositories with less than 10 stars~\cite{borges2018s}, resulting in 1,356 repositories to consider. 
+
+To only consider valid bugs, we looked for issued bug reports with only ``closed'' status and with ``bug''', ``defect'', or ``error'' labels.  Moreover, to select only representative IoT repositories for our study, we manually analyzed repositories that have more than five labeled issues or more than 50 closed issues based on the information in their readme page, issued bug reports, and their website (when available). We then excluded projects that were not representative of IoT systems such as user interface, documentation, or outdated repositories. Our final project list contained 91 open source IoT repositories to analyze. For five repositories that use custom labels (e.g., ``problems'', ``kind/bug'', ``type : bug''), we manually added their labels to our search keywords. In the end, we collected \emph{5,565 bug reports} from the 91 IoT repositories.
+
+Our subject IoT repositories together cover all the layers of the IoT systems' architecture depicted in \autoref{fig:arch}. The most popular programming languages among the subject repositories are Python (21\%), Java (18\%), JavaScript (17\%), C (13\%), and C++ (13\%). A few of them use other programming languages such as Go, Ruby, and C\#. The selected repositories are also diverse in terms of the number of stars and forks they have. In February of 2020, 32\% of our subject GitHub repositories had more than 500 stars, 40\% between 50 to 500 stars, and 28\% between 10 to 50 stars. 
+
+\subsubsection{Labeling} 
+ For each bug report in our dataset, we created a JSON object containing failure(s), cause(s) of the failure, and location(s) of the faulty code. Failure refers to any observable unexpected behavior of the system that is against the correct functionality of that system~\cite{bugCharOpenSoftware,failureDefinition}. To explore the causes of the failure, we did RCA on each bug report using the \emph{five whys technique}~\cite{serrat2017five}. Based on this technique, multiple causes can contribute together or at different levels to a visible failure in the system. Following this approach, we started from the failure and repeatedly asked ``why'' until we reached the root cause of the problem. In the case of software failures, root causes are often developers' faults in the design or implementation of the IoT system. To label the location(s) of faults, we used the architecture defined in Chapter \ref{ch:background} as our reference. 
+
+Bug reports were manually labeled by the author(s) individually following the open coding procedure~\cite{qualitativeStudySE}. We followed an iterative process for labeling where in each iteration, we randomly sampled new instances from the collected bug reports and labeled them. After each labeling iteration, all potential conflicts in labels between the author(s) were resolved. We continued this process until bug categories reached a state of saturation where no new category appeared~\cite{dataSaturationFusch}. 
+
+We also flagged and discarded issues and PRs that could not represent a bug or a bug-fix such as enhancements or how-to-use questions. We examined the entire discussion among developers, as well as the fix commit data (e.g. the commit message and the code diff) to label each bug report. At the end, we labeled \emph{323 bug reports}.
+
+\begin{table}[htbp]
+\caption{Interview Participants}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{c l l l r r}
+\hline
+\textbf{ID}& \textbf{Role }&\textbf{IoT Systems Type}& \textbf{Projects Domain}  & \textbf{Dev Exp (yr)} & \textbf{IoT Dev Exp (yr)}  \\
+\hline
+P1 &  Software and hardware lead & Full-stack & Smart home  & 13  & 7   \\
+P2 & Hardware lead & Hardware & Education& 15  & 5    \\
+P3 & Software dev & Full-stack & Smart home & 5  & 4   \\
+P4 & Software dev & Middleware & Smart city & 3  & 3    \\
+P5 & Software lead & Full-stack & Smart home & 20  & 17   \\
+P6 & Software dev  & Cloud &  Not domain-specific & 10  & 3 \\
+P7 & Software and hardware dev & Full-stack & Smart home & 20  & 3   \\
+P8 & Software lead  & Full-stack & Smart home & 11  & 4  \\
+P9 & Software lead  & Cloud & Not domain-specific & 20  & 12  \\
+\hline
+\end{tabular} }
+\label{tab1}
+\end{table}
+
+\subsection{Interviews}
+ While manual analysis of bug reports and developers' discussions provided useful insights into the characteristics of IoT development, there was still a possibility that our analysis was restricted to only code-level issues and we might miss high-level problems of IoT developers. To mitigate this issue, we conducted semi-structured interviews with IoT developers to reveal new bug categories and collect their development challenges to complement our results. 
+
+\textbf{Participants} 
+We used purposive sampling~\cite{sampling2007} to recruit developers with adequate experience in developing IoT systems. To collect interview participants, we employed GitHub as it provides a diverse pool of developers and their contributions to different projects. We obtained valid email addresses of only the top three contributors to popular open-source IoT repositories as our candidate interviewers. 
+
+We contacted candidates through emails and conducted interviews until we reached data saturation, where we had sufficient data to replicate the study and further data collection is unnecessary~\cite{dataSaturationFusch}. We relied on this widely-applied methodological principle to decide when to stop interviewing~\cite{saturationMorse,saturationGuest} as it is also used in other qualitative studies in software engineering~\cite{tweeter2014, aniche2018modern}. We interviewed people with different development backgrounds and experiences before deciding about the data saturation to consider variability in experimental results across different populations~\cite{henrich2010weirdest}. 
+
+
+ Table \ref{tab1} presents all nine interview participant's experience and field of expertise in IoT development. For a high-level picture of their general development background, the lowest value is three years and the highest value is 20 years (avg=13, sdv=6.4). In terms of IoT development experience, the lowest value is three years and the highest value is 17 years (avg=6.4, sdv=4.6). Participants' IoT development experience covers all sections of IoT systems spanning from hardware to middleware, cloud, and end-applications. In addition, their projects cover a variety of domains such as smart home and Industrial IoT (IIoT). 
+
+\textbf{Protocol} 
+Since our goal for conducting interviews was to be open to new data, and we did not have the definitive structure of bug categories, we conducted interviews following a semi-structured approach. Interviews started with some questions about participants' IoT development background and their field of expertise in IoT. This information could help us improvising insightful questions during the technical section of the interviews. The technical section had a combination of both open-ended and specific questions about different categories of bugs and challenges in IoT development. Our strategy was to start with open-ended questions to avoid biasing participants toward our findings, and then we gradually shifted to more structured and predefined questions during the interview process.  With participants' consent, we recorded the audio and video of all the interviews for later analysis. All the interviews were conducted remotely through Zoom. Interviews took around 43 minutes on average ranging from 31--70 minutes. We used Descript, an automated speech detection tool, to generate transcribes of the interviews and we did manual corrections afterward in case of any mistakes in the automatically generated transcripts.
+
+\textbf{Analysis} \label{interviewAnalysis}
+As the primary objective of this study is to generate theories from the experiences of IoT practitioners instead of using pre-conceived theories, we followed the grounded theory methodology~\cite{grounded2007} to ensure the quality of the generated theory. Our analysis steps consist of iteratively (i) collecting qualitative data from the interviews (ii)  analyzing the interview transcript line by line and assigning labels (tags) to distinct units of meanings, and (iii) identifying emerging categories and relating categories to their subcategories while continuously comparing all the previously analyzed data with the emerging theories. These steps were repeated for each interview. On average, we extracted 18 tags per interview. Potential conflicts in the labels were resolved after each iteration by the authors. 
+
+\subsection{Validation Survey}
+In order to make sure that our findings are generalizable, comprehensive, and representative, we involved more IoT developers through an online survey. 
+
+\textbf{Participants} 
+We sent our online survey to developers that have made at least three contributions to the collected IoT repositories in \autoref{bugCollection} and to IoT developer groups in social media platforms such as Linkedin and Facebook, and online forums. Our survey was online between 19 July and 19 August 2020. The survey, as distributed to participants, is available in our artifact package~\cite{repPack}.
+ \begin{figure}[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/demog.pdf}
+  \caption{Development backgrounds of the survey participants}
+  \label{fig:demog}
+\end{figure}
+
+\textbf{Protocol}
+The survey has three sections. In the first section, we collect participants' background in IoT, and in general development, which is depicted in~\autoref{fig:demog}. The second section concerns the challenges of developing IoT systems with questions aimed at correlating our findings with the participants' own experiences. 
+
+The third section is about the frequency and severity of bug categories based on participants' previous experience in IoT development. At the end of each section, there are open-ended questions to allow them to share their comments about our results and mention new categories.
+
+\textbf{Analysis}
+Our survey was completed by 194 respondents, with a response rate of around 10\% for valid responses. 
+ We received 95 comments through the open-ended questions sections. All of the survey respondents' comments are coded and analyzed following the same procedure discussed in \autoref{interviewAnalysis}.
+
+\section{Findings: IoT Bug Categories (RQ1)}
+In this section, we describe our findings regarding IoT bugs. 
+
+
+\subsection{Taxonomy of Bugs}
+We used all the tags collected by RCA of the bug reports in our dataset, to build a taxonomy of bugs in IoT systems. As our motivating example illustrates~\autoref{motivExample}, IoT bugs can be multi-faceted and manifest at different layers and locations. Therefore, we designed our bug taxonomy to accommodate all these bug characteristics. Considering various approaches suggested by Usma et. al.~\cite{usman2017taxonomies} for taxonomy construction, we followed the approach suggested by Kwasnik~\cite{kwasnik1999role} as IoT bugs are multi-faceted and relatively a new and unexplored concept. Following their approach, we first defined facets of our classification as all failures and locations of failures. Then, we analyzed all bug reports based on these facets and built a hierarchical taxonomy that accommodates all the dimensions.
+
+After we built the initial version of the taxonomy, we used the data from the interviews and the survey to complement and enhance the taxonomy. We reviewed all previously tagged data and re-tagged them after each alteration of the taxonomy. \autoref{bugTax} depicts our IoT bug taxonomy. Next, we describe the major bug categories in our taxonomy. We will use specific bugs as examples for each category. All these bug examples are available in our dataset, which is available online~\cite{repPack}. 
+
+
+\textbf{IoT Device}
+This category of taxonomy covers bugs that are related to IoT device hardware and firmware.
+
+\textit{Device hardware:}
+Bugs in this subcategory are related to the physical aspects of IoT devices.  Examples include bugs related to
+ wiring issues, device pin status issues, or issues with physical sensors and actuators of the device. For example, PEDALINOMINI/34 is related to the device not differentiating between single and double presses of a hardware button. Other common bugs in this category are those that are linked to the device's limitations in memory, power consumption, or processing capacity. One such instance provided by P\textsubscript{1} as he described a scenario where a device on low battery generated incorrect data to the cloud. There are various similar cases in our collected bug reports where the low battery of the device or the removal of the power source of the device causes failures. In addition, heavy calculations and processing on the device (HOMIE-ESP8266/575, interviewee P\textsubscript{8}) or running out of memory (ZWAVE2MQTT/141, interviewee P\textsubscript{7}) are other examples of bugs related to this category. Another example of known hardware issues of IoT devices is the timing issues of Raspberry Pi devices~\cite{piClockissues},  which is also mentioned by an interviewee (P\textsubscript{8}).
+
+\textit{Device firmware:} 
+Firmware bugs consist of three subcategories. The first pertains to device firmware unexpected exception and hang issues. The second sub-category includes issues related to the configuration of the IoT device, which can be specified as an external instruction sent to the device for a specific purpose. This type of bug usually happens in the early stages of introducing an IoT device to the IoT network. Each device has to be configured properly in a way to be compatible with other hardware or software components and also be able to communicate with others on the network. Issues associated with configuring the device with WiFi credentials or with configuring the device with the correct firmware version are some common examples here. The third and most common sub-category is the firmware upgrade issue. There are various cases where poor practices for handling over-the-air (OTA) updates of the device firmware, stale updates, or updating the device firmware with the wrong binary have caused failures of the IoT system.
+In some cases, the stale update issues are related to device configuration issues as in WTHERMOSTATBECA/54, where the device needs to be re-configured with WiFi credentials after each firmware update, otherwise, future firmware updates would be stale. 
+
+\textbf{Compatibility}
+When a bug occurs only on a specific type of device, communication protocol, or third-party component, it falls under the compatibility category. For instance, a common device incompatibility issue happens when certain devices represent their telemetry data in different formats, leading to the other components not being able to process their data. Other common bugs are linked to compatibility issues of certain combinations of sensors and development boards, e.g., incompatibility of the DHT temperature sensor with the ESP32 microcontroller in MONGOOSE-OS/277. Issues with the interoperability of different protocols is another case. One example is MAINFLUX/1079, which is related to the interoperability between the HTTP and MQTT protocols. A common bad practice in IoT development related to these issues is developing protocol-specific or device-specific code. For instance, in DEVICE-OS/1938, the IoT platform relies on event components to report what protocols each event is intended for, in order to be able to run different functions for each protocol individually. However, sometimes developers have no other choice but to follow this error-prone approach, just to bypass the limitations of third-party devices. For instance, (P\textsubscript{2}) mentioned a case where the incompatibility of the Raspberry Pi and some types of sensors had forced their developers to implement custom logic for the communication of these devices. Developers had to switch between Raspberry Pi's default implementation and their own custom implementation based on the sensor type, leading to many issues.
+\begin{figure*}%[ht]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/tax.pdf}
+  \caption{Taxonomy of IoT bugs.} 
+  \label{bugTax}
+\end{figure*}
+\textbf{Communication with IoT devices}
+Bugs that are related to the communication of IoT devices with each other or with other entities fall under this category. Generally, there are two types of bugs in this category:
+
+\textit{Device Connectivity:} 
+Some of the connectivity issues are related to the network that the device relies on for connecting to the internet. One example is when the device cannot discover a valid and available network such as a local access point and therefore loses access to the internet. As it is also mentioned by P\textsubscript{9} \enquote{When the device location is changed to another room or another building, the device has to be reconfigured for the new access point.}
+In addition to the network discovery, not handling a network reset, or unstable and unreliable networks are other common issues that can lead to failures. However, Sometimes IoT devices fail to establish a valid connection to the gateway or remote cloud servers despite a valid network status. Failure in reconnecting, connection refreshing, and ensuring such connectivity failures do not cause propagated failures in other components are other pitfalls that IoT developers often deal with. Additionally, unexpected disconnection or connection closure issues are other manifestations of bugs in this category. Two interviewees (P\textsubscript{6} and P\textsubscript{9}) believe that connectivity bugs are the most serious and challenging bugs. As P\textsubscript{9} states \enquote{the weakest part of our IoT platform is to communicate with IoT devices}
+
+\textit{Data and Messaging:}
+This category includes bugs that are related to data and message sending in the IoT system. Typically, messages are either commands that are sent to IoT devices via the cloud, or they are telemetry data that are received from IoT devices in the edge, cloud, or applications. Some bugs cause failures in delivering these messages from the sender to the receiver. Some other messaging bugs are related to the timing of messages. For instance, various reported bugs are related to the rate and order of the messages. Additionally, some bugs are linked to the payload that is being delivered through the messages. In some cases, payload size or format are the causes of failures. There are also cases where there are violations of payload integrity by messages being truncated or overwritten.
+
+
+\textbf{Cloud/Edge Services}
+This category includes bugs that are related to the services delivered by the remote cloud servers or gateway devices in the edge layer. 
+
+\textit{Device Management:}
+To monitor and control each IoT device remotely, devices should be connected to a cloud server or a hub device, and report their status while listening to user commands. Device management (DM) issues include problems that cause failures in this process. 
+The first class of DM issues happens in the stage of initializing the IoT device in the cloud or edge systems. One type of device initialization (DI) issue is when the IoT device is not properly or uniquely identified by the cloud or edge components and therefore causes further failures in the subject IoT system. Besides, if the IoT device fails to provide a recognizable identity and valid permissions to the cloud or edge, it would not be allowed to use remote services. Some examples of device registration and provisioning bugs are duplicate device certificates, issues with auto-provisioned devices, or failure in retrieving data from the provisioning service. Another class of DI bugs is problems with binding, association, and pairing of IoT devices. There are several cases where bugs are introduced to the IoT system just because devices are grouped together (such as devices in one room), due to not properly handling the association of a sensor device with a physical object. There is an example mentioned by one of our interviewees (P\textsubscript{5}) where two switches were associated with one lamp and only one switch was working due to issues with addressing multi-instance devices with labels.
+The second class of DM issues is related to problems with monitoring the status of IoT devices. One type of device status is the connectivity status, to check whether the device is online, which is also known as the heartbeat check. Some examples of bugs in this type are wrong device heartbeat rate, showing a lost connection as live and vice-versa, or not notifying other components when the device goes offline. Failure in retrieving the device status such as color and brightness for a light bulb, showing the status incorrectly, or failure in updating the device status are some examples of these types of issues.
+
+\textit{Automation:}
+This bug category is related to automation services that IoT cloud or edge platforms provide and it is classified into the trigger, condition, and execution issues. Rule trigger defines a condition under which a rule is initiated. Trigger failures usually cause a rule not to become triggered when it should be (SMARTHOME/5578) or vice-versa (HOME-ASSISTANT-CONFIG/2). Rule condition is the statement that should be checked when the rule is triggered. Examples of the rule condition issues are problems in retrieving the device state to check the rule condition since the condition usually relies on device latest status (TESLA-API/43). Issues in the execution of the rule action are the last and the most prominent automation issues. Some examples of these issues are crash after rule action execution, issues in handling asynchronous behavior and threads in rules, and having problems with the output of the rule being unpredictable or nondeterministic.
+
+\textbf{General Development}
+This category captures common development bugs. Some common issues are problems with installing, compiling, or building a project as well as unexpected crashes or performance issues in the IoT project. The general development category also includes bugs in the authentication or authorization process. One of the IoT-specific authorization issues are problems with generating, signing, or maintaining the certificates that devices have to present for using cloud or edge services (AZURE-IOT-SDK-C/657). Other sub-categories of general development bugs are UI-related, usability, or external issues.
+
+\subsection{Characteristics of Bugs}
+
+ \begin{figure}[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/rcvis.pdf}
+  \caption{Distribution of bug categories (vertical) and root causes (horizontal)}
+  \label{fig:bugRC2d}
+\end{figure}
+
+\textbf{Root causes}
+Figure \ref{fig:bugRC2d} shows the distribution of bug categories and root causes. The most frequent categories of bugs are general development issues (48\%), device management issues (29\%), and messaging issues (19\%). In terms of root causes, after general software programming faults (SWP) such as syntax issues, semantic programming faults (SEM)
+
+ are the most dominant root causes of the bugs. Some semantic mistakes that IoT developers make are wrong control flow,  functionality logic, or return values. However, some of the semantic faults are related to the automation logic of the IoT system, such as logical faults in automation apps, which are also discussed in recent studies~\cite{ISSTA2020Interactions}. 
+
+The next frequent root cause is dependency faults (DEP), where developers use wrong versions of the software or firmware libraries, tools, devices, or protocols.
+
+One of the most important root causes often leading to hardware, connectivity, and messaging issues are timing faults (TM). Improper handling of time-outs or rate of operations, wrong time-out values for connection closures, or not handling asynchronous behaviors are among timing-related root causes.
+
+Some faults that are more specific to hardware programming such as interrupt handling, are assigned to hardware programming faults (HWP). Faults in handling exceptional cases (EC) are another root cause for IoT bugs that include mistakes in handling corner cases (large or out of range data), not handling errors properly, or not handling changes of the requirements or changes in third-party components. Finally, the remaining root causes are related to memory faults (MEM), concurrency faults (CON), and configuration faults (CNF). 
+
+
+\textbf{Correlations among bug categories}
+During our analysis, we observed some frequent patterns of certain bug categories appearing together more often. To study the correlations between bug categories, we used Lift~\cite{kamber2001data}, a statistical metric introduced by Han and Kamber that computes the probability of two categories appearing together. For each pair of bug category, a lift value of more than 1 shows a positive correlation, and a lift value below 1 reveals a negative correlation. 
+
+Table \ref{tab:correlations} shows the lift values of correlated bug category pairs. The top correlated bug categories are [hardware, firmware], [hardware, connectivity], and [firmware, connectivity]. This correlation analysis, besides helping IoT developers in debugging, gives insight into how intertwined IoT bugs can be in practice.
+
+ \begin{table}[htbp]
+\caption{Bug Categories with Positive Correlation}
+\begin{center}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l l | r}
+\hline
+\textbf{Bug Category}& \textbf{Bug Category }& \textbf{Lift Value}  \\
+\hline
+Device: Hardware& Device: Firmware& 3.86   \\
+Device: Hardware &Communication: Connectivity & 2.57   \\
+Device: Firmware &  Communication: Connectivity & 2.25   \\
+Compatibility &  Cloud: Device Management & 1.84   \\
+Compatibility &  Communication: Messaging & 1.44   \\
+Communication: Messaging & Device: Firmware  & 1.42   \\
+Cloud: Device Management & Automation  & 1.38   \\
+Cloud: Device Management & Device: Hardware  & 1.28   \\
+Communication: Connectivity&Communication: Messaging & 1.22   \\
+Communication: Connectivity& Compatibility & 1.14   \\
+
+\hline
+\end{tabular} }
+\label{tab:correlations}
+\end{center}
+\end{table}
+
+
+\textbf{Frequency and severity of bugs}
+We asked our survey participants whether and how frequently they face each bug (sub)category and what are their perceived severity based on the impact on the IoT system and fixing-time. Table \ref{tab2} shows the results.  All the bug categories in our taxonomy have been faced by at least 82\% of IoT developers, which shows the bug categories are representative of the real-world bugs in IoT systems. Connectivity issues are the most frequent and severe bug category with more than 97\% of IoT developers have faced it at least once. 
+
+
+Device-related issues are the least experienced bug categories, but they are the most severe bugs after connectivity issues. According to the survey respondents, automation issues are the least severe bugs, however, more than 91\% of IoT developers have faced them at least once. The compatibility issues are the least frequent bugs according to IoT developers' experiences.
+
+
+Regarding sub-categories, device initialization issues are the most frequent and severe device management bugs since about 95\% of IoT developers having dealt with them.
+
+Also concerning the device status issues, bugs related to the status of connection have shown more frequency while bugs related to the status of device properties are more severe based on survey respondents. Among device-related issues, bugs that are related to the constraints of IoT devices have the most frequency. The device firmware exception issues are the most severe device-related bugs. Concerning general development issues, installation issues are the most frequent and severe bugs. 
+
+
+
+\textbf{Taxonomy augmentation}
+Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
+
+
+
+
+\endinput
+
