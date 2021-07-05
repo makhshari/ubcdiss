@@ -4,47 +4,19 @@
 \chapter{IoT Bugs}
 \label{ch:bugs}
 
-
-\section{Motivation}
-
- \begin{figure}[t]
-  \centering 
-   \includegraphics[width=\linewidth]{./imgs/motiv.pdf}
-  \caption{An example of an IoT bug}
-  \label{fig:arch}
-\end{figure}
-
-
-We use a real IoT bug to motivate our study of bugs and developer challenges in IoT systems. 
-Figure \ref{fig:arch} shows (on the right side) the steps that IoT developers have taken to find the root cause of the bug report PYTRADFRI/135~\cite{iotbug:290}. This bug occurred in a smart home environment where different devices should be connected to a home automation server with the help of a gateway device.
-
-
-Based on developers' discussions, the first manifestation of this bug happens at the application layer. A light bulb device (D3) is mistakenly recognized as a sensor device (F\textsubscript{1}) as the user adds it, and also the Android app crashes (F\textsubscript{2}) once it tries to turn the light bulb off (step 1 and 2). Initially, the developers suspected the root cause of the bug to be the incompatibility of a gateway library with the home automation server (step 3).
-
-
-However, further investigation of the failure in the edge layer (step 4), revealed that the gateway misidentifies D3 as a remote controller (F\textsubscript{3}). Since the gateway in this system relies mainly on a specific format of response data from devices to identify their types properly, potential inconsistencies of the payload data from the subject device were also investigated (step 5). 
-
-
-Also, since the device battery and distance to the gateway could affect the pairing process, developers tried pairing in different circumstances (step 6). After none of the candidate causes showed as the potential reason for the bug, the root cause was identified as an external bug in the firmware of the G2 gateway device (step 7) and resetting both the device and the gateway and pairing them again solved the issue (step 8). But surprisingly F\textsubscript{2} continued to exist. After monitoring the data that the app receives via Wireshark, the root cause of F\textsubscript{2} was identified as a fault in the Android app code (step 9).
-
-
-As we can see in this example, distribution of failures and candidate causes in different layers, dealing with behaviours of diverse devices such as comparing their payload, and depending on naive debugging practices such as monitoring network traffic, make it extremely hard for developers to deal with IoT bugs. Despite these compelling challenges, previous studies~\cite{hnat2011hitchhiker,corno2019challenges,stojkoska2017review,chen2017application,IoTOSBugs} do not take into consideration real-world experiences of IoT developers. In this paper, we aim to provide a systematic and generalized understanding of bugs and challenges in IoT by mainly considering IoT developers' experiences.
-
-
 \section{Methodology}
-Our goal is to characterize software bugs in IoT systems and understand the challenges developers face in practice. To this end, we address the following research questions in this work:
+Our goal is to characterize software bugs in IoT systems. To this end, we address the following research question in this study:
 \begin{itemize}
-\item {\verb|RQ1|}: What are the classes of bugs in IoT systems?
-\item {\verb|RQ2|}: What challenges do IoT developers face in practice?
+\item {\verb|RQ|}: What are the classes of bugs in IoT systems?
 \end{itemize}
-In order to answer these questions, we conduct an empirical investigation consisting of two phases. In the first phase (RQ1), we analyze 323 issues and pull requests (PR) from open-source IoT projects. We use the findings to form the first taxonomy of bugs in IoT systems. In the second phase (RQ2), we conduct a qualitative study through (1) semi-structured interviews with IoT developers to discover new categories of bugs and challenges, (2) a survey of IoT developers to validate the findings and gain new insights. All our quantitative and qualitative data is available online~\cite{repPack} 
+In order to answer these questions, we conduct an empirical investigation consisting of two phases. In the first phase (RQ1), we analyze 323 issues and pull requests (PR) from open-source IoT projects. We use the findings to form the first taxonomy of bugs in IoT systems. In the second phase (RQ2), we conduct a qualitative study through (1) semi-structured interviews with IoT developers to discover new categories of bugs, (2) a survey of IoT developers to validate the findings about IoT bugs and gain new insights. All our quantitative and qualitative data is available online~\cite{repPack} 
 
 \subsection{IoT Bug Categorization}
 \subsubsection{Collecting bug reports} \label{bugCollection}
   The initial step is to find repositories that are representative of IoT projects. We employed the ``GitHub topic feature'' to find IoT-related repositories. According to GitHub's official website~\cite{gitTopic}, Topics are labels that create subject-based connections between GitHub repositories. 
 
 
-  We searched among topics with related keywords such as "internet-of-things" and "IoT" and we added the top three topics ``IoT-application'', ``IoT-platform'', and ``IoT-device'' from the results to our list of targeted topics. Initially, we collected 8,774 repositories using these five topics in January 2020. We excluded repositories with less than 10 stars~\cite{borges2018s}, resulting in 1,356 repositories to consider. 
+  We searched among topics with related keywords such as "internet-of-things" and "IoT" and we added the top three topics ``IoT-application'', ``IoT-platform'', and ``IoT-device'' from the results to our list of targeted topics. Initially, we collected 8,774 repositories using these five topics in January 2020. We excluded repositories with less than 10 stars~\cite{borges2018s}, resulting in 1,356 repositories to consider. t
 
 To only consider valid bugs, we looked for issued bug reports with only ``closed'' status and with ``bug''', ``defect'', or ``error'' labels.  Moreover, to select only representative IoT repositories for our study, we manually analyzed repositories that have more than five labeled issues or more than 50 closed issues based on the information in their readme page, issued bug reports, and their website (when available). We then excluded projects that were not representative of IoT systems such as user interface, documentation, or outdated repositories. Our final project list contained 91 open source IoT repositories to analyze. For five repositories that use custom labels (e.g., ``problems'', ``kind/bug'', ``type : bug''), we manually added their labels to our search keywords. In the end, we collected \emph{5,565 bug reports} from the 91 IoT repositories.
 
