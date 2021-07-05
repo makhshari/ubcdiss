@@ -18,26 +18,6 @@ According to seven interviewees, several GitHub issues (DEVICE-OS/1871, MYCONTRO
 In some scenarios, devices are out of reach or in hard-to-access locations thus making remote debugging more essential. 
 Four interviewees believed that practical simulation solutions are required for better IoT testing and debugging. As P\textsubscript{5}, a middleware developer stated \enquote{IoT device vendors do not provide a mock of their devices, and we have to do reverse engineering on the actual hardware devices rather than working with the simulated ones.} Also as P\textsubscript{5,8,9} stated, current simulation solutions in IoT are not mature enough and they are only valid for limited scenarios, such as testing high-level controllers or small unit tests, rather than being suitable for all levels of testing such as system testing.
 
- \begin{table}%[htbp]
-\caption{Survey Results: Bug Taxonomy}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{ l | r | r r r | r }
-\hline
-\multicolumn{1}{l|}{\textbf{Bug Category}} &\multicolumn{1}{l|}{\textbf{Have faced}}& \multicolumn{3}{c|}{\textbf{Frequency}}& \multicolumn{1}{c}{\textbf{Is Severe}} \\
-& &Frequently&Sometimes& Rarely&  \\
-\hline
-Device: Hardware&82.50\% &30.30\% &39.06\% &30.64\% &43.61\%  \\
-Device: Firmware&85.75\% & 24.20\%& 44.48\%& 31.32\%& 42.78\% \\
-Communication: Connectivity& 97.22\% &50.29\% &38.29\% &11.42\% &62.78\% \\
-Communication: Messaging&92.22\% &33.74\% &36.14\% &30.12\% &40.56\% \\
-Cloud: Device Management& 90.93\% &25.06\% &46.43\% & 28.51\%&40.75\% \\
-Cloud: Automation& 91.67\%& 20.00\% &44.24\% &35.76\% &32.22\% \\
-Compatibility& 86.11\% &23.88\% &40.00\% &36.12\% &36.11\% \\
-Dev&87.89\% &24.53\% & 39.44\%&36.03\% &38.89\% \\
-\hline
-\end{tabular} }
-\label{tab2}
-\end{table}
 
 Some relevant challenges mentioned in the survey are \emph{affording to have all types of IoT devices}, \emph{complex custom logic for effective IoT device mocking and simulation}, and \emph{setting up test environments with IoT devices}. 
 
@@ -70,6 +50,7 @@ As P\textsubscript{6}, a developer of a popular IoT project with near 7K stars, 
 
 
 As Figure~\ref{fig:testing} shows, IoT testing highly depends on manual tasks as only 5\% of participants reported testing completely automatic. Also, during interviews, four interviewees mentioned manual approaches for IoT testing. According to the survey respondents, the most adopted IoT testing approach is hybrid strategies. An example of such an approach is described by one IoT developer \enquote{Services which don't interact with devices directly are tested automatically, but checking the entire platform with devices requires manual testing.} 
+
 
 
  \begin{figure}%[h]

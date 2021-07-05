@@ -206,12 +206,32 @@ Regarding sub-categories, device initialization issues are the most frequent and
 Also concerning the device status issues, bugs related to the status of connection have shown more frequency while bugs related to the status of device properties are more severe based on survey respondents. Among device-related issues, bugs that are related to the constraints of IoT devices have the most frequency. The device firmware exception issues are the most severe device-related bugs. Concerning general development issues, installation issues are the most frequent and severe bugs. 
 
 
+ \begin{table}%[htbp]
+\caption{Survey Results: Bug Taxonomy}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{ l | r | r r r | r }
+\hline
+\multicolumn{1}{l|}{\textbf{Bug Category}} &\multicolumn{1}{l|}{\textbf{Have faced}}& \multicolumn{3}{c|}{\textbf{Frequency}}& \multicolumn{1}{c}{\textbf{Is Severe}} \\
+& &Frequently&Sometimes& Rarely&  \\
+\hline
+Device: Hardware&82.50\% &30.30\% &39.06\% &30.64\% &43.61\%  \\
+Device: Firmware&85.75\% & 24.20\%& 44.48\%& 31.32\%& 42.78\% \\
+Communication: Connectivity& 97.22\% &50.29\% &38.29\% &11.42\% &62.78\% \\
+Communication: Messaging&92.22\% &33.74\% &36.14\% &30.12\% &40.56\% \\
+Cloud: Device Management& 90.93\% &25.06\% &46.43\% & 28.51\%&40.75\% \\
+Cloud: Automation& 91.67\%& 20.00\% &44.24\% &35.76\% &32.22\% \\
+Compatibility& 86.11\% &23.88\% &40.00\% &36.12\% &36.11\% \\
+Dev&87.89\% &24.53\% & 39.44\%&36.03\% &38.89\% \\
+\hline
+\end{tabular} }
+\label{tab2}
+\end{table}
 
 \textbf{Taxonomy augmentation}
 Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
 
-
-
+\section{Discussions}
+asdjnkasdkm
 
 \endinput
 
