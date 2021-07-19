@@ -247,6 +247,16 @@ Some SEM faults are related to the automation logic of the IoT system, such as l
 
 \textbf{Timing faults (TM)}: One of the most important root causes often leading to hardware, connectivity, and messaging issues are TM faults. Improper handling of time-outs or rate of operations, wrong time-out values for connection closures, or not handling asynchronous behaviors are among timing-related root causes. In some cases, the connection is monitored to be closed when the device is idle. Furthermore, finding the ideal time-out value for properly closing the connection to avoid possible failures has shown to be a faulty task for IoT developers.
 
+One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to get a specific command of a certain device and instantly receive an empty array as the response when the device is still busy executing the same command from before. The expected behaviour is to wait until the device acknowledge the complete command execution within the defined time-out.
+
+ \begin{figure}[ht]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/TM}
+  \caption{A timing fault while polling device commands occurred in DEVICEHIVE-JAVA-SERVER/145}
+  \label{fig:tm}
+\end{figure}
+
+
 \textbf{Hardware programming faults (HWP)}: Some faults that are more specific to hardware programming such as interrupt handling, are assigned to the category of HWP faults. Examples include wrong pin/port mapping, improper socket operation, wrong bit assignment, and incorrect interrupt handling. Other faults in hardware code resemble those in software code, like referencing a null pointer or wrong return type.
 
 \textbf{Faults in handling exceptional cases (EC)}: These faults are another root cause for IoT bugs that include mistakes in handling corner cases (large or out of range data), not handling errors properly, or not handling changes of the requirements or changes in third-party components. Figure~\autoref{fig:rc8} shows a EC fault in which the IoT developers did not count for large messages.

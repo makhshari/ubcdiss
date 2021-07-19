@@ -11,9 +11,9 @@ Figure \autoref{fig:arch} shows a typical architecture of an IoT system which is
 The device layer at the bottom, which is the closest component to the physical world, includes smart programmable things interacting with the environment through their embedded sensors and actuators. Some IoT devices employ light embedded operating systems (e.g. contiki, RIOT, TinyOS) that have support for various programming languages allowing developers to write embedded code, such as application-specific logics for IoT devices, on top of the device OS~\cite{javed2018OS}. IoT operating systems aim to hide the minor details of the device hardware and provide basic OS tasks, like memory management and real-time scheduling, efficiently\cite{javed2018OS}. On the other side of spectrum, bare metal IoT devices run the embedded code directly on their hardware processor. Underlying details of the device hardware is usually abstracted by hardware abstraction layer (HAL) to enable access for the operating system to various hardware components like GPIO, and serial interfaces\cite{eclipse2016three}. In addition, IoT devices should have a connectivity capability which includes drivers, external libraries, and communication protocols to allow them communicate over a local wired or wireless communication, which allows devices to be remotely controlled by external entities.
 
 
- \begin{figure}[t]
+ \begin{figure}
   \centering 
-   \includegraphics[width=\linewidth]{./imgs/arch1.pdf}
+   \includegraphics[height=0.9\textheight]{./imgs/arch1.pdf}
   \caption{A typical layered architecture of IoT systems and software stack for each layer}
   \label{fig:arch}
 \end{figure}
