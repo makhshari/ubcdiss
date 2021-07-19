@@ -4,13 +4,31 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-asdbhjasbd
+Internet of Things (IoT) envisions a self-configuring, adaptive, and complex network that interconnects smart objects, embedded with sensors or actuators, to the internet through the use of communication protocols \cite{towardsIoTDefinition}. By 2020, Gartner estimates that smart inter-connected devices will outnumber humans 4-to-1~\cite{hung2017leading} and it is estimated that by 2025, there will be over 75.44 billion smart things worldwide \cite{statista2018internet}. These smart ``\emph{things}'' can be programmed and remotely controlled to collect their data or to control their actions. Programming physical devices with constraint resources, dealing with diverse network protocols, and the integration of diverse entities in IoT systems, add unique characteristics to the challenges of developing such systems. Driven by the above considerations, the concept of bugs in IoT is more complicated than traditional software.
+% \ali{talk briefly about what related work has covered so far and what is missing. cite a few IoT papers here.}
+
+Previously, some studies have investigated the characteristics of IoT repositories~\cite{IoTOSS2020}, and discussed some challenges of IoT systems~\cite{hnat2011hitchhiker,corno2019challenges,stojkoska2017review}.
+Existing research on bug categorization is limited to specific sub-domains of IoT such as bugs in smart aquaculture systems~\cite{chen2017application}, bugs in IoT device operating systems~\cite{IoTOSBugs}, or bugs uncovered during the deployment of IoT systems~\cite{hnat2011hitchhiker}. 
+
+While more mature software domains have benefited from empirical and qualitative studies on their bugs and developer challenges~\cite{DlTaxFaults,blockChainBugs,joorabchi2013real}, no such study is available for IoT to the best of our knowledge. 
+
+Overall, existing work on IoT are either not generalizable or they do not consider experiences of IoT developers to draw conclusions about the characteristics of IoT development.
+
+In this paper, we provide a generalized and systematic overview of bugs and developer challenges in IoT systems. In order to do so, we mine IoT GitHub repositories and collect (5,565) bug reports from 91 representative IoT projects. By applying Root Cause Analysis (RCA), we categorize a subset of 323 bug reports considering the observed failures, root causes, and locations of the bugs. We propose the first taxonomy of bugs in IoT systems, which is constructed by analyzing these real-world IoT bugs. To complement the taxonomy and study the challenges of IoT developers, we conducted semi-structured interviews with nine IoT practitioners that have hands-on experience in different layers of IoT. Lastly, we validated our findings through an online survey that was completed by 194 IoT developers.
 
 \section{Contributions  }
-asdniasoida
+The contributions of this thesis are:
+
+\begin{itemize}
+\item An empirical study to understand IoT failures and their root causes in practice 
+\item The first IoT bug taxonomy
+\item An overview of state-of-the-practice challenges faced by IoT developers
+\end{itemize}
+
+Our findings show that general development issues, device management issues, and messaging issues are the most frequent bug categories. Furthermore, the most frequent root causes of bugs are software programming faults, semantic faults, and dependency faults. In addition, we highlight the challenges of IoT developers in various areas such as testing, debugging, and dealing with heterogeneity and security in IoT. 
 
 \section{Thesis Organization }
-asdniasoida
+In chapter two, we provide detailed background information about different layers of IoT system. We also provide an in-depth case study of a real-world IoT bug that we collected from GitHub by going through the steps IoT developer gone through to debug the issue and the challenges they faced throughout the process. We use this example as the motivation for our study. In chapter 3, we provide our bug analysis methodology and our findings regarding IoT bugs. Chapter 4 starts with a description of our methodology and findings regarding IoT development challenges. Chapter 5 discusses the related work, and chapter 6 includes conclusions, future work and possible research directions.
 
 \endinput
 
