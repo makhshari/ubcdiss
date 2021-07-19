@@ -17,22 +17,18 @@ Overall, existing work on IoT are either not generalizable or they do not consid
 In this paper, we provide a generalized and systematic overview of bugs and developer challenges in IoT systems. In order to do so, we mine IoT GitHub repositories and collect (5,565) bug reports from 91 representative IoT projects. By applying Root Cause Analysis (RCA), we categorize a subset of 323 bug reports considering the observed failures, root causes, and locations of the bugs. We propose the first taxonomy of bugs in IoT systems, which is constructed by analyzing these real-world IoT bugs. To complement the taxonomy and study the challenges of IoT developers, we conducted semi-structured interviews with nine IoT practitioners that have hands-on experience in different layers of IoT. Lastly, we validated our findings through an online survey that was completed by 194 IoT developers.
 
 \section{Contributions  }
-We conducted a systematic empirical study involving more than 90 real-world IoT projects and 200 IoT developers to characterize IoT bugs and IoT development challenges. The detailed list of thesis contributions are as follows:
-
+We conducted a systematic empirical study involving more than 90 real-world IoT projects and 200 IoT developers to characterize IoT bugs and development challenges. The detailed list of thesis contributions is as follows:
 \begin{itemize}
-\item {We collected a set of 91 representative IoT repositories in various programming languages from different layers of IoT by mining 8,774 IoT repositories on GitHub and manually analyzing the results.}
-\item{We collected a diverse dataset of 5,565 valid IoT bugs from these 91 IoT projects by mining GitHub issues.}
-\item{We applied Root Cause Analysis (RCA) techniques to a subset of collected bugs and categorized each bug report by carefully reading the developer discussions.}
-\item {We conducted semi-structured one-on-on interviews with experienced IoT developers to get more insights about IoT bugs and development challenges.}
-\item {We conducted an online survey with a large and diverse group of IoT developers to validate our results and to get more insights on IoT bugs and development challenges.}
-\item {We proposed the first multi-faceted and comprehensive bug taxonomy for IoT systems by considering all the inputs from mining GitHub repositories, interviews, and survey.}
-\item{We categorized the root causes of IoT bugs and discussed the characteristics of each root cause specifically.}
-\item{We studied the IoT bug categories based on their frequency, perceived severity and their correlations.}
-\item {We characterized the state-of-the-practice challenges faced by IoT developers using all our various input sources.} 
-\item{We provide real-world concrete examples and contextual data by reading through GitHub discussions and categorizing interviews and survey for each IoT development challenges in order to give more detailed insights into each development challenges }
+\item {We provide the first benchmark dataset of representative IoT repositories for future software engineering research in the context of IoT. This dataset consists of 91 IoT projects collected by mining all 8,774 IoT repositories on GitHub, and carefully analyzing the resulting projects. These repositories are in various programming languages and cover all different layers of IoT. This dataset is publicly available in our replication package~\cite{repPack}}.
+\item {We provide a benchmark dataset of 5,565 valid IoT bugs collected from representative IoT projects by mining GitHub issues. This dataset is publicly available~\cite{repPack} and can be used for future research on IoT bugs.}
+\item {We propose the first multi-faceted and comprehensive bug taxonomy for IoT systems by carefully analyzing a subset of 323 IoT bugs, and considering inputs from IoT developers through semi-structured one-on-one interviews with IoT developers, and an online survey that involved a large and diverse set of IoT developers.}
+\item {We apply Root Cause Analysis (RCA) to each analyzed bug report and provide categories of IoT bugs' root causes.}
+\item{We investigate all bug categories based on their frequency, perceived severity, and their correlations using analyzed data from GitHub discussions, interviews and our online survey.}
+\item {We characterize the state-of-the-practice challenges faced by IoT developers using all our various input sources.} 
+\item{We provide real-world concrete examples and contextual data from through GitHub discussions, interviews, and survey comments in order to give more detailed insights into each development challenges.}
 \end{itemize}
 
-Our findings show that general development issues, device management issues, and messaging issues are the most frequent bug categories. Furthermore, the most frequent root causes of bugs are software programming faults, semantic faults, and dependency faults. In addition, we highlight the challenges of IoT developers in various areas such as testing, debugging, and dealing with heterogeneity and security in IoT. 
+Our findings show that general development issues, device management issues, and messaging issues are the most frequent bug categories in the context of IoT. Furthermore, the most frequent root causes of IoT bugs are software programming faults, semantic faults, and dependency faults. In terms of challenges, our findings highlight the obstacles of IoT developers in various areas such as testing, debugging, dealing with heterogeneity, and security in IoT. 
 
 \section{Thesis Organization }
 In chapter two of the thesis, we provide detailed background information about different layers of IoT system. We also provide an in-depth case study of a real-world IoT bug that we collected from GitHub by going through the steps IoT developer gone through to debug the issue and the challenges they faced throughout the process. We use this example as the motivation for our study. In chapter 3, we provide our bug analysis methodology and our findings regarding IoT bugs. Chapter 4 starts with a description of our methodology and discuss our findings regarding IoT development challenges. Chapter 5 discusses the related work, and chapter 6 includes conclusions, future work and possible research directions.
