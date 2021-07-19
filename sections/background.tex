@@ -10,12 +10,14 @@ Figure \autoref{fig:arch} shows a typical architecture of an IoT system which is
 \subsection{Device Layer}
 The device layer at the bottom, which is the closest component to the physical world, includes smart programmable things interacting with the environment through their embedded sensors and actuators. Some IoT devices employ light embedded operating systems (e.g. contiki, RIOT, TinyOS) that have support for various programming languages allowing developers to write embedded code, such as application-specific logics for IoT devices, on top of the device OS~\cite{javed2018OS}. IoT operating systems aim to hide the minor details of the device hardware and provide basic OS tasks, like memory management and real-time scheduling, efficiently\cite{javed2018OS}. On the other side of spectrum, bare metal IoT devices run the embedded code directly on their hardware processor. Underlying details of the device hardware is usually abstracted by hardware abstraction layer (HAL) to enable access for the operating system to various hardware components like GPIO, and serial interfaces\cite{eclipse2016three}. In addition, IoT devices should have a connectivity capability which includes drivers, external libraries, and communication protocols to allow them communicate over a local wired or wireless communication, which allows devices to be remotely controlled by external entities.
 
+
  \begin{figure}[t]
   \centering 
    \includegraphics[width=\linewidth]{./imgs/arch1.pdf}
   \caption{A typical layered architecture of IoT systems and software stack for each layer}
   \label{fig:arch}
 \end{figure}
+
 
 \subsection{Gateway Layer}
 This layer contains gateway devices with fewer resource constraints with the ability to handle telemetry data collection, processing, and routing locally on the edge. Gateway devices can handle the device-device and device-cloud interoperability by interpreting diverse communication protocols such as MQTT, CoAP, and HTTP~\cite{tschofenig2014architectural}. 
@@ -29,15 +31,17 @@ Remote IoT cloud servers accumulate and process all telemetry data, and communic
 
 End users and end applications can monitor the telemetry data and device status, and send commands to IoT devices to control and configure them remotely from the cloud. Usually, external end users and end applications should be authenticated and authorized in the cloud to be able to use these services. Some IoT cloud providers offer an interface for third-party applications, and allow users to run custom code in the application runtime environment on top of the cloud services\cite{vcolakovic2018IoT} and also allow them to have direct access to the analytical data via various visualizations and customized dashboards.
 
-\section{Motivation}
 
+\section{Motivation}
+\afterpage{%
  \begin{figure}[t]
   \centering 
    \includegraphics[width=\linewidth]{./imgs/motiv.pdf}
   \caption{The steps IoT developers have went through to find the root cause of a real IoT bug occurred in~\cite{iotbug:290}.}
   \label{fig:arch}
 \end{figure}
-
+\clearpage
+}
 
 Dealing with bugs and their causes in IoT systems is not a trivial task for developers. Below, we will do an in-depth investigation of a real bug report in an IoT system as an example of how dealing with bugs can be time-consuming for IoT developers. In addition to discussing the bug, we also showcase some challenges IoT developers have went through while debugging. 
 
