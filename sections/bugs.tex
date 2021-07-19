@@ -247,7 +247,7 @@ Some SEM faults are related to the automation logic of the IoT system, such as l
 
 \textbf{Timing faults (TM)}: One of the most important root causes often leading to hardware, connectivity, and messaging issues are TM faults. Improper handling of time-outs or rate of operations, wrong time-out values for connection closures, or not handling asynchronous behaviors are among timing-related root causes. In some cases, the connection is monitored to be closed when the device is idle. Furthermore, finding the ideal time-out value for properly closing the connection to avoid possible failures has shown to be a faulty task for IoT developers.
 
-One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to get a specific command of a certain device and instantly receive an empty array as the response when the device is still busy executing the same command from before. The expected behaviour is to wait until the device acknowledge the complete command execution within the defined time-out.
+One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to get a specific command of a certain device and instantly receive an empty array as the response when the device is still busy executing the same command from before. The expected behaviour is to wait until the device acknowledge the complete command execution within the defined time-out. Figure~\autoref{fig:tm} shows part of the bug fix for this issue, that enforces the device to first wait for the command to be processed.
 
  \begin{figure}[ht]
   \centering
