@@ -335,23 +335,41 @@ Communication: Connectivity& Compatibility & 1.14   \\
 \end{center}
 \end{table}
 
+\subsection{Representativeness of bug categories}
+All the bug categories in our taxonomy have been faced by at least 82\% of IoT developers, which shows the bug categories are representative of the real-world bugs in IoT systems. More than 97\% of IoT developers have faced connectivity issues at least once.  After this category, messaging, automation, and device management issues are among the most approved bug categories with all of them approved by more than 90\% of IoT developers. Also, more than 81\% of IoT developers have the experience of dealing with general development bugs. Regarding sub-categories, about 95\% of IoT developers having dealt with device initialization issues. Bugs related to authentication and installation are the least experienced general development bugs. 
 
-\subsection{Frequency and severity of bugs}
+ \begin{figure}%[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/bugRep}
+  \caption{Survey result about how much IoT developers have experienced each bug category.}
+  \label{fig:bugRep}
+\end{figure}
 
-The most frequent categories of bugs are general development issues (48\%), device management issues (29\%), and messaging issues (19\%). 
+\subsection{Frequency of bug categories}
+We asked our survey participants how frequently they face each bug (sub)category. The most frequent categories of bugs are general development issues (48\%), device management issues (29\%), and messaging issues (19\%). Connectivity issues are the most frequent bug category with more than half of developers face it frequently. Hardware, and messaging issues are among the most frequent bug categories after connectivity issues. 
+The compatibility issues are the least frequent bugs according to IoT developers' experiences. Regarding sub-categories, device initialization issues are the most frequent device management bugs. Also concerning the device status issues, bugs related to the status of connection have shown more frequency. Among device-related issues, bugs that are related to the constraints of IoT devices have the most frequency. Concerning general development issues, installation issues are the most frequent bugs. 
 
-We asked our survey participants whether and how frequently they face each bug (sub)category and what are their perceived severity based on the impact on the IoT system and fixing-time. Table \ref{tab2} shows the results.  All the bug categories in our taxonomy have been faced by at least 82\% of IoT developers, which shows the bug categories are representative of the real-world bugs in IoT systems. Connectivity issues are the most frequent and severe bug category with more than 97\% of IoT developers have faced it at least once. more than half of developers face it frequently, and 62\% of IoT developers find it severe. After this category, messaging, automation, and device management issues are among the most approved bug categories with all of them approved by more than 90\% of IoT developers. 
+ \begin{figure}%[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/bugFreq}
+  \caption{Survey result about how frequent each bug category is based on IoT developers' experience.}
+  \label{fig:bugFreq}
+\end{figure}
 
-In terms of frequency, hardware, and messaging issues are among the most frequent bug categories after connectivity issues. 
+\subsection{Severity of bugs}
+We also asked survey participants what are the bug categories' perceived severity based on the impact they have on the IoT system and their fixing-time. Connectivity issues are the most severe bug category as well since more than 62\% of IoT developers find it severe. Although device-related issues are the least experienced bug categories, they are the most severe bugs after connectivity issues. According to the survey respondents, automation issues are the least severe bugs Among sub-categories, device initialization issues has been found severe by more than half of IoT developers. Among device-related issues, bugs related to the status of device properties are more severe based on survey respondents. The device firmware exception issues are the most severe device-related bugs. Concerning general development issues, installation issues are the most  severe bugs. Finally, nearly 30\% of survey respondents find general development bugs severe.
 
-Device-related issues are the least experienced bug categories, but they are the most severe bugs after connectivity issues. According to the survey respondents, automation issues are the least severe bugs, however, more than 91\% of IoT developers have faced them at least once. The compatibility issues are the least frequent bugs according to IoT developers' experiences.
+ \begin{figure}%[h]
+  \centering
+   \includegraphics[width=\linewidth]{imgs/bugSev}
+  \caption{Survey result about how severe each bug category is based on IoT developers' experience.}
+  \label{fig:bugSev}
+\end{figure}
 
-Regarding sub-categories, device initialization issues are the most frequent and severe device management bugs since about 95\% of IoT developers having dealt with them, and more than half of developers find it severe. 
+ Table \ref{tab2} summarizes all the quantitative results we gathered from our online survey.
 
-Also concerning the device status issues, bugs related to the status of connection have shown more frequency while bugs related to the status of device properties are more severe based on survey respondents. Among device-related issues, bugs that are related to the constraints of IoT devices have the most frequency. The device firmware exception issues are the most severe device-related bugs. Concerning general development issues, installation issues are the most frequent and severe bugs. 
-
-Bugs related to authentication and installation are the least experienced general development bugs. Nevertheless, more than 81\% of IoT developers have the experience of dealing with them and nearly 30\% of survey respondents find this bug severe.
-
+\textbf{Taxonomy augmentation}
+Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
 
  \begin{table}%[htbp]
 \caption{Survey Results: Bug Taxonomy}
@@ -373,10 +391,6 @@ Dev&87.89\% &24.53\% & 39.44\%&36.03\% &38.89\% \\
 \end{tabular} }
 \label{tab2}
 \end{table}
-
-\textbf{Taxonomy augmentation}
-Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
-
 
 
 \endinput
