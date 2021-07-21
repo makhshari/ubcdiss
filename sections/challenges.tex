@@ -75,7 +75,6 @@ Some relevant challenges mentioned in the survey are \emph{affording to have all
 \textbf{Fault localization}
 According to eight interviewees, nine survey comments, and also half of the survey participants, fault localization is a barrier due to lack of transparency in the operations of IoT systems. As P\textsubscript{7} mentioned "\emph{there is no environment that logs everything.}" One contributing factor to this is the difficulty of tracing executions of numerous external components in IoT systems. P\textsubscript{3} mentioned using open-source solutions just to be able to log everything. 
 
-
 Another factor that impacts fault localization is the existence of hidden failures. As an example, P\textsubscript{7} mentioned "\emph{It's hard to recognize on the app that the temperature the device is reporting now is for several minutes ago.}" Also P\textsubscript{5} states "\emph{Usually, the bug is inconsequential until it is perceived at the end of the chain in the user interface.}"
 
 Moreover, P\textsubscript{2,4} mentioned examples of failures that only show up after the device has worked for a specific amount of time (five minutes for P\textsubscript{2}, several hours for P\textsubscript{4}), which is also observed in GitHub issues (DEVICE-OS/1926, ZWAVE2MQTT/141, VSCP/207). This issue makes IoT failures more unpredictable and may hide developers' faults. Another issue toward fault localization is the lack of tools and developers' support. For instance, P\textsubscript{3} inspects device messages in bit-level by monitoring communications using Wireshark. P\textsubscript{2}, as a hardware platform developer, said "\emph{Since there is no feedback of errors or corruptions from devices, we've added some LEDs to them to track if something is working in the device level or not.}"  
@@ -91,6 +90,18 @@ Also, we observed other examples such as TEMPERATURE-MACHINE/13: "\emph{I can re
 \textbf{Combinatorial explosion}
 In addition to all the evolving components in traditional software, such as libraries and operating systems, there are more changing factors in IoT systems. Hardware devices produced by various manufacturers with different standards, device integration middlewares, and communication protocols are some examples of these extra changing factors in IoT. With all these components releasing new versions at a specific rate, a combinatorial explosion problem is likely to happen when developers want to cover all possible combinations with test cases.
 One relevant statement is "\emph{I do not have all kinds of bulbs, remotes, and sensors, so I could be completely wrong!}" in a GitHub discussion (PYTRADFRI/135). We could collect eight tags come from four interviewees and two tags from survey comments regarding the challenge of combinatorial testing. As one example, P\textsubscript{9} said "\emph{We have to test with 10 or 15 different devices each time.}" Also, 80 percent of survey respondents agree with the combinatorial explosion as a testing challenge for IoT developers, and P\textsubscript{8} mentioned it as the most severe testing challenge. 
+
+~\autoref{lst:usbBug} shows how presence of physical devices can increase the test search space. In addition to regular tests that all systems have, IoT developers have to spend some additional time on writing and executing tests that cover interaction scenarios with physical devices.
+
+\begin{lstlisting} [language=Java, caption={All different scenarios developers have to check, just to test a fix provided for a USB messaging bug in DEVICE-OS/1871}, label={lst:usbBug}] 
+ - State changes are sane when the device is powered with USB cable in.
+ - State changes are sane when the device is powered with no USB cable in (powered through VIN).
+ - State changes are sane when USB cable is unplugged.
+ - State changes are sane when USB cable is plugged back.
+ - State changes are sane when Serial.end() is called and cable is unplugged and re-plugged. 
+ - State changes are sane once Serial.begin() is called after.
+ - State changes are sane once Serial.end() is called, cable is unplugged, Serial.begin() is called, and cable is plugged back.
+\end{lstlisting}
 
 \textbf{Testing and debugging edge-cases}
 Covering large-scale scenarios (e.g. too many devices) and exceptional cases (e.g. temperatures below zero) add to the test coverage obstacles. This challenge is mentioned by four interviewees, three survey participants, and observed in several GitHub discussions (DEVICE-OS/1926, TEMPERATURE-MACHINE/13). As one example, P\textsubscript{4} said "\emph{We should put effort to write proper tests against concurrency issues since we should be able to handle 140,000 HTTP requests per second because our IoT system is deployed in different cities.}" Additionally, this challenge is the most experienced testing challenge (83\% of respondents). 
@@ -202,6 +213,14 @@ Investigating the log data of IoT devices is a common debugging task for IoT dev
 \textbf{Fragmented and ever-changing ecosystem of IoT}
 One of the most serious challenges of IoT development nowadays is the rapid obsolescence of hardware devices. As several IoT experts and blog posts~\cite{gizmodoblogpost,iotforallblogpost} describe it, the pace that IoT devices get obscured and stop being supported by the providers is increasing. New updates for IoT devices often make the older devices unusable while they also break IoT developers' implementations. Within this ever-changing ecosystem of IoT, developers have to struggle with maintaining their device-specific or protocol-specific code. IoT developers, not only have to afford all versions of devices to keep up with these changes but also they have to allocate much of their development effort into migrating from one version or ecosystem to the other. As this issue targets both IoT consumers and developers, in 2019, some countries put regulations on the minimum time that IoT providers can release updates after the device is bought~\cite{UKregulations}. Furthermore, some solutions such as contract-based testing were suggested by interviewees (P\textsubscript{5}), to ensure continuous compatibility with third-party systems. However, none of these methods can be a long-term and universal solution as they are still dependent on the contracts and regulations in place.
 
+\subsection{Threats to Validity}
+\textbf{Internal validity}
+One internal threat to the validity of our study, similar to most qualitative studies, is researchers' bias in coding qualitative data. We mitigated this risk by having all authors of the paper involved in the tagging process and discuss any discrepancies in tags for all pieces of qualitative data from various sources (bug reports, interview transcripts, survey comments). For interviews specifically, we eliminated any personal preference on our results by triangulation; each piece of meaningful data from interview transcripts was tagged by one researcher who conducted the interview and one who was not present in the interview session.
+
+\textbf{External validity}
+One external threat to the validity of our study is the generalization of studied IoT repositories. We minimized this issue by studying a large number of repositories (91 repositories) selected from all layers of IoT systems. Another risk to the validation of our study is the interview and survey participants not being representative of all IoT developers. However, we minimized this risk by recruiting interview and survey participants with different IoT-related field of expertise, years of experience, companies, and domains. In addition, our survey is filled out by 194 IoT developers with a diverse distribution of skills and experiences.
+
+All our study material, including the bug dataset and interview and survey questions, is available online~\cite{repPack}.
 
 
 
