@@ -4,16 +4,38 @@
 \chapter{Conclusions and Future Work}
 \label{ch:conclusion}
 
-In this paper, we proposed the first bug taxonomy for IoT systems. We also presented a series of categories of challenges in these systems with a qualitative study. Our findings can help both researchers and practitioners in understanding real-world pain-points of IoT development in the wild and designing new techniques and tools. Our findings shed light on the most frequent and severe IoT bugs, their correlations, and their root causes, and thereby allowing these faults to be avoided or detected early in the development of IoT systems. 
+In this thesis, we study different aspects of IoT development from a software engineering perspective, using systematic approaches used in software engineering empirical research. 
+
+In the first chapter of the thesis, we mine GitHub repositories to collect IoT repositories that are representative of all aspects of IoT systems. We also collected valid bug reports of all subject projects using rigorous filtering which led to a benchmark dataset of 5,565 valid bug reports. Subsequently, we applied root cause analysis on a subset of 323 valid bug reports and analyzed all their associated git commits and GitHub discussions to thoroughly study each of them. Our comprehensive analysis of bug reports has two outcomes: (a) We propose an extensive bug taxonomy for IoT systems which considers different aspects of IoT bugs, such as the associated faulty component or the layer in which the failure is observed. We categorize IoT bugs of IoT device hardware/firmware, cloud/edge services, compatibility, communication with IoT devices, and general-development issues.We also study the root causes of IoT bugs and provide insights into each category of root causes. We complement our data with the data from survey and interview which was conducted for the second part of the study.
+
+In the second chapter, we mainly used the insights from the interview and survey to present a series of categories of challenges in IoT systems. We also use GitHub discussions of analyzed bug reports to find more insights and examples for each development challenge.
+
+Our findings shed light on the most frequent and severe IoT bugs, their correlations, and their root causes, and thereby allowing these faults to be avoided or detected early in the development of IoT systems. 
 
 \section{Future Work}
+
+ \textbf{Using ourbenchmark dataset of IoT projects and IoT bugs for future software engineering research.}
+
+ We carefully analyzed each candidate IoT repository before including it in the set of subject projects, to make sure that our proposed benchmark dataset of IoT projects are representative for future use in software engineering research.
+ *****TBD****
+
+*****TBD****
+
+
  \textbf{Using our bug taxonomy for IoT fault seeding.}
-Our bug taxonomy can be used by IoT mutation operators and test event generators as there have been recent studies regarding using these methods in IoT as well~\cite{gutierrez2019evolutionary,gutierrez2018iot}. Since we have characterized both the low-level programming errors and high-level system failures, as well as the location of the faults, our bug taxonomy is highly adaptable to seed various types of faults in IoT systems. We believe that the seeded faults using our bug taxonomy can be perfectly crafted to capture IoT developers' mistakes within various components as our taxonomy is constructed using real-world bugs in IoT projects.
+Our bug taxonomy can be used by IoT mutation operators and test event generators as there have been recent studies regarding using these methods in IoT as well~\cite{gutierrez2019evolutionary,gutierrez2018iot}. Since we have characterized both the low-level programming errors and high-level system failures, as well as the location of the faults, our bug taxonomy is highly adaptable to seed various types of faults in IoT systems. We believe that the seeded faults using our bug taxonomy can be perfectly crafted to capture IoT developers' mistakes within various components as our taxonomy is constructed using real-world bugs in IoT projects. Compared to the fault handling in other computing platforms such as distributed systems and cloud services, IoT systems raise unique challenges [27]. Due to the heterogeneity of IoT devices, various devices often require different fault-handling techniques executed~\cite{norris2020iotrepair}.
 
-Compared to the fault handling in other computing platforms such as distributed systems and cloud services, IoT systems raise unique challenges [27]. Due to the heterogeneity of IoT devices, various devices often require different fault-handling techniques executed~\cite{norris2020iotrepair}.
+ \textbf{Study root causes of IoT systems}
 
+*****TBD****
 
+*****TBD****
 
+ \textbf{Developing new tools and techniques for IoT development}
+ Our findings can help both researchers and practitioners in understanding real-world pain-points of IoT development in the wild and designing new techniques and tools. 
+ *****TBD****
+
+*****TBD****
 
 
 \endinput
