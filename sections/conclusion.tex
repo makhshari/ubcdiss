@@ -3,40 +3,16 @@
 
 \chapter{Conclusions and Future Work}
 \label{ch:conclusion}
+This chapter discusses the conclusions from our study, and also some potential future research directions. In this thesis, we study different aspects of IoT development, namely bugs and development challenges, from a software engineering perspective, using systematic approaches used in software engineering empirical research. 
 
-In this thesis, we study different aspects of IoT development from a software engineering perspective, using systematic approaches used in software engineering empirical research. 
+In the first part of the thesis, we mine GitHub repositories to collect IoT repositories that are representative of all aspects of IoT systems. Utilizing a combination of automatic filtering and careful manual investigation, we collected a set of 91 IoT repositories. We also collect valid bug reports of all subject projects using rigorous filtering which led to a benchmark dataset of 5,565 valid bug reports. After collecting these benchmark datasets, we apply root cause analysis on a subset of 323 valid bug reports and analyze all their associated git commits and GitHub discussions to thoroughly examine each bug. Our comprehensive analysis of bug reports has three outcomes: (a) We propose an extensive bug taxonomy for IoT systems, that considers different aspects of IoT bugs, such as the associated faulty component or the layer in which the failure is observed. We categorize IoT bugs to device hardware/firmware, cloud/edge services, compatibility, communication with IoT devices, and general-development issues. We validate these bug categories with the data from the survey and interview which was conducted for the second part of the study. Our bug analysis suggests that the most frequent categories of bugs are 
+general development issues (48\%), device management issues (29\%), and messaging issues (19\%). Our quantitative results from the survey suggest that all the bug categories in our taxonomy have been faced by at least 82\% of IoT developers. Also, connectivity issues are agreed to be the most frequent and severe bug category with more than 97\% of IoT developers have faced it at least once. (b) We also study the root causes of IoT bugs and provide insights into each category of root causes. Some common root causes of bugs are syntactical and semantical software/hardware fault (SWP, HWP, SEM), fault in handling dependencies of components (DEP), and fault in managing exceptional cases (EC). Other types of observed root causes for IoT bugs are Configuration faults (CNF), and more sophisticated faults such as memory management faults (MEM), faults in handling concurrency (CON), and timing-related faults (TM).
 
-In the first chapter of the thesis, we mine GitHub repositories to collect IoT repositories that are representative of all aspects of IoT systems. We also collected valid bug reports of all subject projects using rigorous filtering which led to a benchmark dataset of 5,565 valid bug reports. Subsequently, we applied root cause analysis on a subset of 323 valid bug reports and analyzed all their associated git commits and GitHub discussions to thoroughly study each of them. Our comprehensive analysis of bug reports has two outcomes: (a) We propose an extensive bug taxonomy for IoT systems which considers different aspects of IoT bugs, such as the associated faulty component or the layer in which the failure is observed. We categorize IoT bugs of IoT device hardware/firmware, cloud/edge services, compatibility, communication with IoT devices, and general-development issues.We also study the root causes of IoT bugs and provide insights into each category of root causes. We complement our data with the data from survey and interview which was conducted for the second part of the study.
+Now, we discuss the future work from the first part of the study. Our findings from the first section shed light on the most frequent and severe IoT bugs, their correlations, and their root causes. Thereby one implication of this section is \textbf{(1)} allowing common faults in IoT development to be avoided or detected early by developers. The other potential future use of the outcome of this part is \textbf{(2)} using the benchmark dataset of IoT projects and IoT bugs for future software engineering research. We think our benchmark datasets can be useful since we carefully analyzed each candidate IoT repository before including it in the set of subject projects, to make sure that our proposed benchmark dataset of IoT projects is representative for future use in software engineering research. Another implication of our bug study is \textbf{(3)} using our bug taxonomy for IoT fault seeding. Our bug taxonomy can be used by IoT mutation operators and test event generators as there have been recent studies regarding using these methods in IoT as well~\cite{gutierrez2019evolutionary,gutierrez2018iot}. Since we have characterized both the low-level programming errors and high-level system failures, as well as the location of the faults, our bug taxonomy is highly adaptable to seed various types of faults in IoT systems. We believe that the seeded faults using our bug taxonomy can be perfectly crafted to capture IoT developers' mistakes within various components as our taxonomy is constructed using real-world bugs in IoT projects. Compared to the fault handling in other computing platforms such as distributed systems and cloud services, IoT systems raise unique challenges. Due to the heterogeneity of IoT devices, various devices often require different fault-handling techniques executed~\cite{norris2020iotrepair}.
 
-In the second chapter, we mainly used the insights from the interview and survey to present a series of categories of challenges in IoT systems. We also use GitHub discussions of analyzed bug reports to find more insights and examples for each development challenge.
+In the second part, we mainly use the insights from the interviews and survey to present a series of categories of challenges in IoT systems. We also use GitHub discussions of the analyzed bug reports to include more insights and examples for each development challenge. In addition, interview participants and open-ended questions in the survey provide plentiful useful contextual data about IoT development challenges. We also used our survey to provide quantitative results about each bug category. Some of the most important challenges mentioned by IoT developers are related to testing and debugging, reproducing and localizing faults, handling heterogeneity in the IoT ecosystem, and managing the security of IoT systems. 
 
-Our findings shed light on the most frequent and severe IoT bugs, their correlations, and their root causes, and thereby allowing these faults to be avoided or detected early in the development of IoT systems. 
-
-\section{Future Work}
-
- \textbf{Using ourbenchmark dataset of IoT projects and IoT bugs for future software engineering research.}
-
- We carefully analyzed each candidate IoT repository before including it in the set of subject projects, to make sure that our proposed benchmark dataset of IoT projects are representative for future use in software engineering research.
- *****TBD****
-
-*****TBD****
-
-
- \textbf{Using our bug taxonomy for IoT fault seeding.}
-Our bug taxonomy can be used by IoT mutation operators and test event generators as there have been recent studies regarding using these methods in IoT as well~\cite{gutierrez2019evolutionary,gutierrez2018iot}. Since we have characterized both the low-level programming errors and high-level system failures, as well as the location of the faults, our bug taxonomy is highly adaptable to seed various types of faults in IoT systems. We believe that the seeded faults using our bug taxonomy can be perfectly crafted to capture IoT developers' mistakes within various components as our taxonomy is constructed using real-world bugs in IoT projects. Compared to the fault handling in other computing platforms such as distributed systems and cloud services, IoT systems raise unique challenges [27]. Due to the heterogeneity of IoT devices, various devices often require different fault-handling techniques executed~\cite{norris2020iotrepair}.
-
- \textbf{Study root causes of IoT systems}
-
-*****TBD****
-
-*****TBD****
-
- \textbf{Developing new tools and techniques for IoT development}
- Our findings can help both researchers and practitioners in understanding real-world pain-points of IoT development in the wild and designing new techniques and tools. 
- *****TBD****
-
-*****TBD****
-
+Our findings of IoT development challenges can \textbf{(5)} help both researchers and practitioners in understanding real-world pain points of IoT development in the wild. One potential future work from this section is \textbf{(6)} developing new tools for IoT development to overcome the observed obstacles of IoT development. We believe that these findings can motivate researchers for designing new techniques and tools, and conducting more in-depth investigations of each development challenge.
 
 \endinput
 

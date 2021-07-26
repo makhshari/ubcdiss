@@ -3,6 +3,7 @@
 
 \chapter{Background}
 \label{ch:background}
+This chapter provides background information about the IoT architecture and the goals and tasks of each layer of the architecture. In the next part, an example of an IoT bug from a real-world GitHub project is investigated in detail. This example serves as a motivational example for our study. 
 
 \section{IoT Architecture}
 Figure \autoref{fig:arch} shows a typical architecture of an IoT system which is based on the architectures defined in previous studies~\citep{towardsIoTDefinition,stojkoska2017review,vcolakovic2018IoT,eclipse2016three}. 
@@ -33,6 +34,7 @@ End users and end applications can monitor the telemetry data and device status,
 
 
 \section{Motivation}
+
 \afterpage{%
  \begin{figure}[t]
   \centering 
@@ -53,7 +55,7 @@ Based on developers' discussions, the first manifestation of this bug happens at
 
 However, further investigation of the failure in the edge layer (step 4), revealed that the gateway misidentifies D3 as a remote controller (F\textsubscript{3}). Since the gateway in this system relies mainly on a specific format of response data from devices to identify their types properly, potential inconsistencies of the payload data from the subject device were also investigated (step 5). In addition, developers should consider the device type, model, manufacturer, and the firmware version to detect possible breaking changes in the device firmware by the device manufacturer. 
 
-But, further investigation eliminated the possibility of the device payload data as the root cause as some users reported that the same setting has not caused any issue for them. As the next step developers tried pairing in different circumstances (step 6), since the device battery and distance to the gateway could affect the pairing process. After none of the candidate causes showed as the potential reason for the bug, the root cause was identified as an external bug in the firmware of the G2 gateway device (step 7) and resetting both the device and the gateway and pairing them again solved the issue (step 8). But surprisingly F\textsubscript{2} continued to exist. After monitoring the data that the app receives via Wireshark, the root cause of F\textsubscript{2} was identified as a fault in the Android app code (step 9).
+However, further investigation eliminated the possibility of the device payload data as the root cause as some users reported that the same setting has not caused any issue for them. As the next step developers tried pairing in different circumstances (step 6), since the device battery and distance to the gateway could affect the pairing process. After none of the candidate causes showed as the potential reason for the bug, the root cause was identified as an external bug in the firmware of the G2 gateway device (step 7) and resetting both the device and the gateway and pairing them again solved the issue (step 8). But surprisingly F\textsubscript{2} continued to exist. After monitoring the data that the app receives via Wireshark, the root cause of F\textsubscript{2} was identified as a fault in the Android app code (step 9).
 
 This example shows how one bug in the firmware of the gateway device, can make a lamp in the device layer useless, and cause observable failures in edge and application layers. Distribution of IoT failures and their candidate causes in different layers of IoT required a wide range of development skills from developers, as we could see that developers have to both investigate low-level firmware code and debug high-level application code to find the root cause of a single bug. Also dealing with behaviours of diverse devices such as comparing their payload, and depending on naive debugging practices such as monitoring network traffic, make it extremely hard for developers to deal with IoT bugs. Another challenging factor that we observed in this case study, is the interference of physical factors like the battery and the distance of the IoT devices from the gateway devices, which makes the debugging process rather time-consuming and complex.
 

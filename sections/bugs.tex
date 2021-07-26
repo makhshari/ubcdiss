@@ -3,6 +3,7 @@
 
 \chapter{IoT Bugs}
 \label{ch:bugs}
+This section provides our IoT bugs study. In the first part of this chapter, we describe the research questions and the methodology for the bug study. In the following parts, we provide our findings from the bug study and answer the proposed research questions.
 
 \section{Methodology}
 Our goal from this study is to characterize software bugs in IoT systems. To this end, we address the following research questions in this study:
@@ -164,9 +165,9 @@ In some cases, the stale update issues are related to device configuration issue
 When a bug occurs only on a specific type of device, communication protocol, or third-party component, it falls under the compatibility category. For instance, a common device incompatibility issue happens when certain devices represent their telemetry data in different formats, leading to the other components not being able to process their data. Other common bugs are linked to compatibility issues of certain combinations of sensors and development boards, e.g., incompatibility of the DHT temperature sensor with the ESP32 microcontroller in MONGOOSE-OS/277. Issues with the interoperability of different protocols is another case. One example is MAINFLUX/1079, which is related to the interoperability between the HTTP and MQTT protocols. A common bad practice in IoT development related to these issues is developing protocol-specific or device-specific code. For instance, in DEVICE-OS/1938, the IoT platform relies on event components to report what protocols each event is intended for, in order to be able to run different functions for each protocol individually. However, sometimes developers have no other choice but to follow this error-prone approach, just to bypass the limitations of third-party devices. For instance, (P\textsubscript{2}) mentioned a case where the incompatibility of the Raspberry Pi and some types of sensors had forced their developers to implement custom logic for the communication of these devices. Developers had to switch between Raspberry Pi's default implementation and their own custom implementation based on the sensor type, leading to many issues.
 
 \afterpage{%
-\begin{figure*}%[ht]
+\begin{figure*}[ht]
   \centering
-   \includegraphics[width=\linewidth]{imgs/tax.pdf}
+   \includegraphics[width=1.3\linewidth]{imgs/tax.pdf}
   \caption{Taxonomy of IoT bugs.} 
   \label{bugTax}
 \end{figure*}
@@ -178,29 +179,28 @@ Bugs that are related to the communication of IoT devices with each other or wit
 
 \textit{Device Connectivity:} 
 Some of the connectivity issues are related to the network that the device relies on for connecting to the internet. One example is when the device cannot discover a valid and available network such as a local access point and therefore loses access to the internet. As it is also mentioned by P\textsubscript{9} \enquote{When the device location is changed to another room or another building, the device has to be reconfigured for the new access point.}
-
-\begin{lstlisting} [language=Java, caption={An example of testing a bug fix after WiFi reconnection in DEVICE-OS/1639}, label={lst:wifiReset}] 
-// Initial Wifi Connection
-  WiFi.connect();
-  // asserting socket creation are done correctly
- const sock_handle_t sock = socket_create();
-  if (!socket_handle_valid(sock))   Log.error("socket_create() failed");
- // Asserting that socket connection works without error
- const auto r = socket_connect();
-  if (r != 0)  Log.error("socket_connect() failed");
-<@\textbf{// WiFi Reconnection and asserting the socket closure operation}@>
- WiFi.off();
- WiFi.connect();
-const auto r2 = socket_close(sock);
-if (r2 != 0)  Log.error("socket_close() failed");
-\end{lstlisting}
-
  
 In addition to the network discovery, not handling a network reset, or unstable and unreliable networks are other common issues that can lead to failures. However, Sometimes IoT devices fail to establish a valid connection to the gateway or remote cloud servers despite a valid network status. Failure in reconnecting, connection refreshing, and ensuring such connectivity failures do not cause propagated failures in other components are other pitfalls that IoT developers often deal with. Additionally, unexpected disconnection or connection closure issues are other manifestations of bugs in this category.
 
 Listing~\autoref{lst:wifiReset} shows a real-world example of the additional tests IoT developers write to check if a fix for a bug caused by WiFi reconnection is a good enough fix. As this example shows, IoT developers have to write code that is able to handle unexpected reconnections and disconnections in order to avoid connectivity bugs.
 
 Additionally, two interviewees (P\textsubscript{6} and P\textsubscript{9}) believe that connectivity bugs are the most serious and challenging bugs. As P\textsubscript{9} states \enquote{the weakest part of our IoT platform is to communicate with IoT devices.}
+
+\begin{lstlisting} [language={Java}, caption={An example of testing a bug fix after WiFi reconnection in DEVICE-OS/1639}, label={lst:wifiReset}] 
+// Initial Wifi Connection
+ WiFi.connect();
+ // asserting socket creation are done correctly
+ const sock_handle_t sock = socket_create();
+  if (!socket_handle_valid(sock))  log.error("socket_create failed");
+ // Asserting that socket connection works without error
+ const auto r = socket_connect(sock);
+ if (r == 0)  log.error("socket connect failed");
+  // WiFi Reconnection and asserting the socket closure operation
+ WiFi.off();
+ WiFi.connect();
+const auto r2 = socket_close(sock);
+if (r2 == 0) log.error("socket_close failed");
+\end{lstlisting}
 
 \textit{Data and Messaging:}
 This category includes bugs that are related to data and message sending in the IoT system. Typically, messages are either commands that are sent to IoT devices via the cloud, or they are telemetry data that are received from IoT devices in the edge, cloud, or applications. Some bugs cause failures in delivering these messages from the sender to the receiver. Some other messaging bugs are related to the timing of messages. For instance, various reported bugs are related to the rate and order of the messages. Additionally, some bugs are linked to the payload that is being delivered through the messages. 
@@ -231,17 +231,14 @@ This bug category is related to automation services that IoT cloud or edge platf
 \textbf{General Development}
 This category captures common development bugs. Some common issues are problems with installing, compiling, or building a project as well as unexpected crashes or performance issues in the IoT project. The general development category also includes bugs in the authentication or authorization process. One of the IoT-specific authorization issues are problems with generating, signing, or maintaining the certificates that devices have to present for using cloud or edge services (AZURE-IOT-SDK-C/657). Other sub-categories of general development bugs are UI-related, usability, or external issues.
 
-\subsection{Root causes of Bugs}
+\subsection{Root causes of Bugs (RQ2)}
 
-\afterpage{%
  \begin{figure*}
   \centering
    \includegraphics[width=\linewidth]{imgs/rcvis.pdf}
   \caption{Distribution of bug categories (vertical) and root causes (horizontal)}
   \label{fig:bugRC2d}
 \end{figure*}
-\clearpage
-}
 
 Figure \ref{fig:bugRC2d} shows the distribution of bug categories and root causes. In this section we will describe each category of root causes. 
 
@@ -294,7 +291,7 @@ One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to
 \textbf{Configuration faults (CNF)}: Hardware devices and development tools need some particular configuration, and wrong provisioning of the proper configurations are considered CNF faults.
 
 
-\subsection{Correlations among bug categories}
+\subsection{Correlations among bug categories (RQ3)}
 During our analysis, we observed some frequent patterns of certain bug categories appearing together more often. To study the correlations between bug categories, we used Lift~\cite{kamber2001data}, a statistical metric introduced by Han and Kamber that computes the probability of two categories appearing together. For each pair of bug category, a lift value of more than 1 shows a positive correlation, and a lift value below 1 reveals a negative correlation. 
 
 Table \ref{tab:correlations} shows the lift values of correlated bug category pairs. The top correlated bug categories are [hardware, firmware], [hardware, connectivity], and [firmware, connectivity]. This correlation analysis, besides helping IoT developers in debugging, gives insight into how intertwined IoT bugs can be in practice.
@@ -335,7 +332,7 @@ Communication: Connectivity& Compatibility & 1.14   \\
 \end{center}
 \end{table}
 
-\subsection{Representativeness of bug categories}
+\subsection{Representativeness of bug categories (RQ4)}
 All the bug categories in our taxonomy have been faced by at least 82\% of IoT developers, which shows the bug categories are representative of the real-world bugs in IoT systems. More than 97\% of IoT developers have faced connectivity issues at least once.  After this category, messaging, automation, and device management issues are among the most approved bug categories with all of them approved by more than 90\% of IoT developers. Also, more than 81\% of IoT developers have the experience of dealing with general development bugs. Regarding sub-categories, about 95\% of IoT developers having dealt with device initialization issues. Bugs related to authentication and installation are the least experienced general development bugs. 
 
  \begin{figure}%[h]
@@ -345,7 +342,7 @@ All the bug categories in our taxonomy have been faced by at least 82\% of IoT d
   \label{fig:bugRep}
 \end{figure}
 
-\subsection{Frequency of bug categories}
+\subsection{Frequency of bug categories (RQ4)}
 Mining IoT GitHub repositories show that the most frequent bug categories of bugs are general development issues (48\%), device management issues (29\%), and messaging issues (19\%). But, since these numbers might be biased to our subject repositories, we also asked our survey participants how frequently they face each bug (sub)category. Connectivity issues are the most frequent bug category with more than half of developers face it frequently. Hardware, and messaging issues are among the most frequent bug categories after connectivity issues. 
 The compatibility issues are the least frequent bugs according to IoT developers' experiences. Regarding sub-categories, device initialization issues are the most frequent device management bugs. Also concerning the device status issues, bugs related to the status of connection have shown more frequency. Among device-related issues, bugs that are related to the constraints of IoT devices have the most frequency. Concerning general development issues, installation issues are the most frequent bugs. 
 
@@ -356,7 +353,7 @@ The compatibility issues are the least frequent bugs according to IoT developers
   \label{fig:bugFreq}
 \end{figure}
 
-\subsection{Severity of bugs}
+\subsection{Severity of bugs (RQ4)}
 We also asked survey participants what are the bug categories' perceived severity based on the impact they have on the IoT system and their fixing-time. Connectivity issues are the most severe bug category as well since more than 62\% of IoT developers find it severe. Although device-related issues are the least experienced bug categories, they are the most severe bugs after connectivity issues. According to the survey respondents, automation issues are the least severe bugs Among sub-categories, device initialization issues has been found severe by more than half of IoT developers. Among device-related issues, bugs related to the status of device properties are more severe based on survey respondents. The device firmware exception issues are the most severe device-related bugs. Concerning general development issues, installation issues are the most  severe bugs. Finally, nearly 30\% of survey respondents find general development bugs severe.
 
  \begin{figure}%[h]
@@ -367,9 +364,6 @@ We also asked survey participants what are the bug categories' perceived severit
 \end{figure}
 
  Table \ref{tab2} summarizes all the quantitative results we gathered from our online survey.
-
-\textbf{Taxonomy augmentation}
-Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
 
  \begin{table}%[htbp]
 \caption{Survey Results: Bug Taxonomy}
@@ -391,6 +385,11 @@ Dev&87.89\% &24.53\% & 39.44\%&36.03\% &38.89\% \\
 \end{tabular} }
 \label{tab2}
 \end{table}
+
+
+\textbf{Taxonomy augmentation}
+Regarding IoT bugs, we collected 79 tags from interviews and 18 tags from the survey comments. Device binding issues, performance issues, and third-party compatibility issues were not discovered before the interviews and were added by interviewers' experience. The survey comments did not reveal any new information to be added to the taxonomy. However, the extracted tags, from both the interviews and survey, helped us to characterize each bug category by providing contextual data.
+
 
 
 \endinput
