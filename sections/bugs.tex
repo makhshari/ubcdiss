@@ -260,30 +260,54 @@ Some SEM faults are related to the automation logic of the IoT system, such as l
 
 \textbf{Dependency faults (DEP)}: The next frequent root cause is DEP faults, where developers use wrong versions of the software or firmware libraries, tools, devices, or protocols. Dependency faults are the main causes of compatibility issues, device firmware issues, and general development issues. It's important to note that dependency faults are different from compatibility bugs in nature since the latter is mostly an observed failure that can have different causes (as we can see in \ref{fig:bugRC2d}), where the first one is a fault by developers in choosing the right version. Developers have to follow the dependency constraints among hardware devices and software libraries to avoid these faults in their code.
 
+\begin{lstlisting} [language=Java, caption={Fix for a timing fault while polling device commands, occurred in DEVICEHIVE-JAVA-SERVER/145}, label={lst:tm}] 
+@GET
+@Path("/{deviceGuid}/command/{commandId}/poll")
+//Fault: polling for commands instantly.
+//Fix: Waiting for a command to be processed first before polling.
+@ApiOperation(value = "Waits for a command to be processed", 
+            response = DeviceCommand.class)
+ //This method returns a command only if it has been processed by a device. 
+ // In the case when command is not processed, the method blocks until device acknowledges command execution.
+ // If the command is not processed within the waitTimeout period, the server returns an empty response. In this case, to continue polling, the client should repeat the call.
+@ApiResponses({
+            @ApiResponse(code = 204, message = "Command was not processed during waitTimeout."),
+            @ApiResponse(code = 400, message = "Command with commandId was not sent for device with deviceGuid or wrong input parameters."),
+            @ApiResponse(code = 404, message = "Device or command was not found.")
+    })
+\end{lstlisting}
+
+
 \textbf{Timing faults (TM)}: One of the most important root causes often leading to hardware, connectivity, and messaging issues are TM faults. Improper handling of time-outs or rate of operations, wrong time-out values for connection closures, or not handling asynchronous behaviors are among timing-related root causes. In some cases, the connection is monitored to be closed when the device is idle. Furthermore, finding the ideal time-out value for properly closing the connection to avoid possible failures has shown to be a faulty task for IoT developers.
 
-One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to get a specific command of a certain device and instantly receive an empty array as the response when the device is still busy executing the same command from before. The expected behaviour is to wait until the device acknowledge the complete command execution within the defined time-out. Figure~\autoref{fig:tm} shows part of the bug fix for this issue, that enforces the device to first wait for the command to be processed.
+One example of TM faults occurs in DEVICEHIVE-JAVA-SERVER/145 when users want to get a specific command of a certain device and instantly receive an empty array as the response when the device is still busy executing the same command from before. The expected behaviour is to wait until the device acknowledge the complete command execution within the defined time-out. Figure~\autoref{lst:tm} shows part of the bug fix for this issue, that enforces the device to first wait for the command to be processed.
 
- \begin{figure}[ht]
-  \centering
-   \includegraphics[width=\linewidth]{imgs/TM}
-  \caption{A timing fault while polling device commands occurred in DEVICEHIVE-JAVA-SERVER/145}
-  \label{fig:tm}
-\end{figure}
 
 
 \textbf{Hardware programming faults (HWP)}: Some faults that are more specific to hardware programming such as interrupt handling, are assigned to the category of HWP faults. Examples include wrong pin/port mapping, improper socket operation, wrong bit assignment, and incorrect interrupt handling. Other faults in hardware code resemble those in software code, like referencing a null pointer or wrong return type.
 
-\textbf{Faults in handling exceptional cases (EC)}: These faults are another root cause for IoT bugs that include mistakes in handling corner cases (large or out of range data), not handling errors properly, or not handling changes of the requirements or changes in third-party components. Figure~\autoref{fig:rc8} shows a EC fault in which the IoT developers did not count for large messages.
- 
- \begin{figure}%[h]
-  \centering
-   \includegraphics[width=\linewidth]{imgs/rc8}
-  \caption{An EC fault (from ESP-MQTT/34) that allocates 16 bit instead of 32 bit for each MQTT message, which cause the system to break with large MQTT messages.}
-  \label{fig:rc8}
-\end{figure}
+
+\textbf{Faults in handling exceptional cases (EC)}: These faults are another root cause for IoT bugs that include mistakes in handling corner cases (large or out of range data), not handling errors properly, or not handling changes of the requirements or changes in third-party components. Figure~\autoref{lst:rc8} shows a EC fault in which the IoT developers did not count for large messages.
+
  
 \textbf{Memory faults (MEM)}: Faults related to incorrectly handling memory objects fall into this category. There are some previous studies focused specifically on memory-related bugs \cite{memBugs}. Also some other studies have categorized these bugs as a defect in software systems \cite{openSourceBugs}. Memory bugs often happen as the result of race conditions on memory locations. A race condition is a situation in which the result of an operation depends on the interleaving of certain individual operations. Such situations can lead to different types of bugs like buffer overflow, stack smashing, memory leak, uninitialized read, and double free bugs, as it is also classified in bugBench \cite{bugBench}.
+
+\begin{lstlisting} [language=Java, caption={Fix for an EC fault (from ESP-MQTT/34) that allocates 16 bit instead of 32 bit for each MQTT message, which cause the system to break with large MQTT messages.}, label={lst:rc8}] 
+//Fault: 
+//int mqtt_get_total_length(uint8_t* buffer, uint16_t length);
+//const char* mqtt_get_publish_topic(uint8_t* buffer, uint16_t* length);
+//const char* mqtt_get_publish_data(uint8_t* buffer, uint16_t* length);
+
+//Fix: changing "int" and "uint16_t" to "uint32_t"
+uint32_t mqtt_get_total_length(uint8_t* buffer, uint16_t length);
+const char* mqtt_get_publish_topic(uint8_t* buffer, uint32_t* length);
+const char* mqtt_get_publish_data(uint8_t* buffer, uint32_t* length);
+
+// Fault: int mqtt_get_total_length(uint8_t* buffer, uint16_t length)
+//Fix: changing "int" to "uint32_t"
+uint32_t mqtt_get_total_length(uint8_t* buffer, uint16_t length)
+\end{lstlisting}
+
 
 \textbf{Concurrency faults (CON)}: A concurrency fault exists if running two threads at the same time is not handled properly. These faults usually do not show up if the two programs run sequentially. Thus, these bugs happen only in multi-threading or multi-processes environments and only when the operations are ill-synchronized. In the context of IoT, the communication of things and the cloud can be asynchronous, which means data can be transmitted intermittently rather than in a steady stream, because there are various parties (user, sensor, actuator) that can send data whenever they like. Based on the classification in bugBench, there are three types of concurrency bugs. Data race bugs happen when at least two threads access a shared variable at the same time. At least one thread tries to modify the variable. Atomicity-related bugs happen when one thread is unexpectedly interrupted by another thread. Deadlock is a situation when two or more threads wait for a resource and can never proceed anymore. 
 
