@@ -11,7 +11,7 @@ In this study, we aim to characterize the development challenges of IoT develope
 \item {\verb|RQ2|}: How frequent each of these development challenge are based on IoT developers' experience?
 \end{itemize}
 
-To answer these RQs, we devised the bug discussion analysis, IoT developer interviews and survey that we discussed in~\autoref{ch:bugs} to characterize the development challenges in the context of IoT. 
+To answer these RQs, we devised the bug discussion analysis, IoT developer interviews, and the online survey that we discussed in~\autoref{ch:bugs} to characterize the development challenges in the context of IoT. 
 
 \subsection{GitHub Issues Discussions}
 During the categorization of IoT bugs, we also read the entire GitHub discussion for each bug report and kept track of the challenges IoT developers are dealing with. We used the same tagging technique discussed in section {\autoref{interviewAnalysis} for analyzing challenges we observe while reading through GitHub discussions. Our goal was to come up with some examples and initial high-level categories of IoT development challenges . We aimed to use these initial data to lead the semi-structured interviews with IoT developers which will be discussed in the next section.
@@ -53,7 +53,11 @@ Three interviewees (P\textsubscript{2}, P\textsubscript{3}, P\textsubscript{7}) 
  For instance, as it is shown in~\autoref{lst:varLag}, to test a fix for a variable lag related in an IoT device, developers need to do manual digital writes to the IoT device after some time intervals, and also investigate the output. GitHub discussions show that IoT developers go through these steps manually.
  
  Another example in the same project is show in~\autoref{lst:USBSOS}, where the IoT developers have to apply physical changes to the device, like plugging or unplugging the battery, and also observe the physical state of the device in order to make sure that the fix completely fixes the bug. 
- 
+
+
+This challenge is also observable in other bug reports in GitHub (DEVICE-OS/1871, MYCONTROLLER/485, HOMIE-ESP8266/242). 
+One example is a developer saying "\emph{I need to check on my car to see what is returned by the API}" in discussions for TESLA-API/43.
+
  \begin{lstlisting} [language=Java, caption={Steps to test a USBSerial SOS issue in DEVICE-OS/1707}, label={lst:USBSOS}] 
 // Develoeprs need battery-powered devices in order to test the fix
 1- Flash the example application to a battery powered device
@@ -63,8 +67,6 @@ Three interviewees (P\textsubscript{2}, P\textsubscript{3}, P\textsubscript{7}) 
 3- Observe the LED status, whether it will enter SOS mode
 \end{lstlisting}
 
-This challenge is also observable in other bug reports in GitHub (DEVICE-OS/1871, MYCONTROLLER/485, HOMIE-ESP8266/242). 
-One example is a developer saying "\emph{I need to check on my car to see what is returned by the API}" in discussions for TESLA-API/43.
 In some scenarios, devices are out of reach or in hard-to-access locations thus making remote debugging more essential. 
 Four interviewees believed that practical simulation solutions are required for better IoT testing and debugging. As P\textsubscript{5}, a middleware developer stated "\emph{IoT device vendors do not provide a mock of their devices, and we have to do reverse engineering on the actual hardware devices rather than working with the simulated ones.}" Also as P\textsubscript{5,8,9} stated, current simulation solutions in IoT are not mature enough and they are only valid for limited scenarios, such as testing high-level controllers or small unit tests, rather than being suitable for all levels of testing such as system testing.
  For instance, P\textsubscript{8} states "\emph{Device simulation can only help in either testing high-level controllers or small unit tests rather than helping with testing all functionalities of your system in integration with a Google NEST device as an example.}"
