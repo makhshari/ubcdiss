@@ -164,13 +164,14 @@ In some cases, the stale update issues are related to device configuration issue
 \textbf{Compatibility}
 When a bug occurs only on a specific type of device, communication protocol, or third-party component, it falls under the compatibility category. For instance, a common device incompatibility issue happens when certain devices represent their telemetry data in different formats, leading to the other components not being able to process their data. Other common bugs are linked to compatibility issues of certain combinations of sensors and development boards, e.g., incompatibility of the DHT temperature sensor with the ESP32 microcontroller in MONGOOSE-OS/277. Issues with the interoperability of different protocols is another case. One example is MAINFLUX/1079, which is related to the interoperability between the HTTP and MQTT protocols. A common bad practice in IoT development related to these issues is developing protocol-specific or device-specific code. For instance, in DEVICE-OS/1938, the IoT platform relies on event components to report what protocols each event is intended for, in order to be able to run different functions for each protocol individually. However, sometimes developers have no other choice but to follow this error-prone approach, just to bypass the limitations of third-party devices. For instance, (P\textsubscript{2}) mentioned a case where the incompatibility of the Raspberry Pi and some types of sensors had forced their developers to implement custom logic for the communication of these devices. Developers had to switch between Raspberry Pi's default implementation and their own custom implementation based on the sensor type, leading to many issues.
 
+
+
 \afterpage{%
-\begin{figure*}[ht]
-  \centering
-   \includegraphics[width=1.3\linewidth]{imgs/tax.pdf}
-  \caption{Taxonomy of IoT bugs.} 
+ \begin{figure}
+ \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{./imgs/tax.pdf}}%
+  \caption{Taxonomy of IoT bugs.}
   \label{bugTax}
-\end{figure*}
+\end{figure}
 \clearpage
 }
 
@@ -211,17 +212,17 @@ In some cases, payload size or format are the causes of failures. There are also
 \textbf{Cloud/Edge Services}
 This category includes bugs that are related to the services delivered by the remote cloud servers or gateway devices in the edge layer. 
 
-\textit{Device Management:}
-To monitor and control each IoT device remotely, devices should be connected to a cloud server or a hub device, and report their status while listening to user commands. Device management (DM) issues include problems that cause failures in this process. 
-The first class of DM issues happens in the stage of initializing the IoT device in the cloud or edge systems. One type of device initialization (DI) issue is when the IoT device is not properly or uniquely identified by the cloud or edge components and therefore causes further failures in the subject IoT system. Besides, if the IoT device fails to provide a recognizable identity and valid permissions to the cloud or edge, it would not be allowed to use remote services. Some examples of device registration and provisioning bugs are duplicate device certificates, issues with auto-provisioned devices, or failure in retrieving data from the provisioning service. Another class of DI bugs is problems with binding, association, and pairing of IoT devices. There are several cases where bugs are introduced to the IoT system just because devices are grouped together (such as devices in one room), due to not properly handling the association of a sensor device with a physical object. There is an example mentioned by one of our interviewees (P\textsubscript{5}) where two switches were associated with one lamp and only one switch was working due to issues with addressing multi-instance devices with labels.
-
-The second class of DM issues is related to problems with monitoring the status of IoT devices. One type of device status is the connectivity status, to check whether the device is online, which is also known as the heartbeat check. Some examples of bugs in this type are wrong device heartbeat rate, showing a lost connection as live and vice-versa, or not notifying other components when the device goes offline. \autoref{lst:heartbeat} shows some hearbeat issues that IoT developers have fixed in order to debug unexpected resets of the IoT devices bug occurred in HOMIE-ESP8266/242.
-
 \begin{lstlisting} [language=Java, caption={The hearbeat issues related to the bug in HOMIE-ESP8266/242 and the developers' approach to check each of them.}, label={lst:heartbeat}] 
 - There is too much time the client has sent a ping request without a response: Disconnect client to avoid half open connections.
 - The server does not receive messages inside the keep-alive window: Send ping to the server to ensure the server will receive at least one message inside keep-alive window.
 - The connection is one-sided and the server might not be connected: Send a ping message to the server to verify if the server is still there and the connection is not half-way.
 \end{lstlisting}
+
+\textit{Device Management:}
+To monitor and control each IoT device remotely, devices should be connected to a cloud server or a hub device, and report their status while listening to user commands. Device management (DM) issues include problems that cause failures in this process. 
+The first class of DM issues happens in the stage of initializing the IoT device in the cloud or edge systems. One type of device initialization (DI) issue is when the IoT device is not properly or uniquely identified by the cloud or edge components and therefore causes further failures in the subject IoT system. Besides, if the IoT device fails to provide a recognizable identity and valid permissions to the cloud or edge, it would not be allowed to use remote services. Some examples of device registration and provisioning bugs are duplicate device certificates, issues with auto-provisioned devices, or failure in retrieving data from the provisioning service. Another class of DI bugs is problems with binding, association, and pairing of IoT devices. There are several cases where bugs are introduced to the IoT system just because devices are grouped together (such as devices in one room), due to not properly handling the association of a sensor device with a physical object. There is an example mentioned by one of our interviewees (P\textsubscript{5}) where two switches were associated with one lamp and only one switch was working due to issues with addressing multi-instance devices with labels.
+
+The second class of DM issues is related to problems with monitoring the status of IoT devices. One type of device status is the connectivity status, to check whether the device is online, which is also known as the heartbeat check. Some examples of bugs in this type are wrong device heartbeat rate, showing a lost connection as live and vice-versa, or not notifying other components when the device goes offline. \autoref{lst:heartbeat} shows some hearbeat issues that IoT developers have fixed in order to debug unexpected resets of the IoT devices bug occurred in HOMIE-ESP8266/242.
 
 Failure in retrieving the device status such as color and brightness for a light bulb, showing the status incorrectly, or failure in updating the device status are some other examples of DM issues.
 

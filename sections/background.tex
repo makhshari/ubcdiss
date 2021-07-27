@@ -36,18 +36,17 @@ End users and end applications can monitor the telemetry data and device status,
 \section{Motivation}
 
 \afterpage{%
- \begin{figure}[t]
-  \centering 
-   \includegraphics[width=\linewidth]{./imgs/motiv.pdf}
+ \begin{figure}
+ \makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{./imgs/motiv.pdf}}%
   \caption{The steps IoT developers have went through to find the root cause of a real IoT bug occurred in~\cite{iotbug:290}.}
-  \label{fig:arch}
+  \label{fig:motiv}
 \end{figure}
 \clearpage
 }
 
 Dealing with bugs and their causes in IoT systems is not a trivial task for developers. Below, we will do an in-depth investigation of a real bug report in an IoT system as an example of how dealing with bugs can be time-consuming for IoT developers. In addition to discussing the bug, we also showcase some challenges IoT developers have went through while debugging. 
 
-Figure \ref{fig:arch} shows (on the right side) the steps that IoT developers have taken to find the root cause of the bug report PYTRADFRI/135~\cite{iotbug:290}. This bug occurred in a smart home environment where different devices should be connected to a home automation server with the help of a gateway device.
+Figure \ref{fig:motiv} shows (on the right side) the steps that IoT developers have taken to find the root cause of the bug report PYTRADFRI/135~\cite{iotbug:290}. This bug occurred in a smart home environment where different devices should be connected to a home automation server with the help of a gateway device.
 
 
 Based on developers' discussions, the first manifestation of this bug happens at the application layer. A light bulb device (D3) is mistakenly recognized as a sensor device (F\textsubscript{1}) as the user adds it, and also the Android app crashes (F\textsubscript{2}) once it tries to turn the light bulb off (step 1 and 2). Initially, the developers suspected the root cause of the bug to be the incompatibility of a gateway library with the home automation server (step 3).
